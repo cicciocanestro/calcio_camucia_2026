@@ -8,7 +8,7 @@ Dashboard web interattiva per gli appassionati di calcio del **Comune di Cortona
 - **Fratta Santa Caterina** – *Seconda Categoria (Girone I)* • Campo Sportivo "A. Faralli", Fratta
 - **Fratticciola** – *Seconda Categoria (Girone I)* • Campo Comunale, Fratticciola
 - **Monsigliolo** – *Terza Categoria Arezzo (Girone A)* • Campo Sportivo "R. Burzi", Monsigliolo
-- **Montecchio** – *Terza Categoria Arezzo (Girone A)* • Campo Sportivo Montecchio Vesponi
+- **Montecchio** – *Terza Categoria Arezzo (Girone A)* • Campo Sportivo Montecchio del Loto
 
 ---
 
