@@ -175,7 +175,7 @@ ter.forEach(g => {
 });
 
 console.log("✓ Promozione Girone C: 15 giornate (120 partite totali).");
-console.log("✓ Seconda Categoria Girone G: 15 giornate (120 partite totali).");
+console.log("✓ Seconda Categoria Girone I: 15 giornate (120 partite totali).");
 console.log("✓ Terza Categoria Girone A: 17 giornate (153 partite totali).");
 
 console.log("=== ALL VALIDATION CHECKS PASSED SUCCESSFULLY ===");

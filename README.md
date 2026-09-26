@@ -5,8 +5,8 @@ Dashboard web interattiva per gli appassionati di calcio del **Comune di Cortona
 ## 🏟️ Squadre, Categorie & Impianti del Comune di Cortona
 
 - **Cortona Camucia Calcio** – *Promozione (Girone C)* • Stadio Comunale "Santi Tiezzi", Camucia
-- **Fratta Santa Caterina** – *Seconda Categoria (Girone G)* • Campo Sportivo "A. Faralli", Fratta
-- **Fratticciola** – *Seconda Categoria (Girone G)* • Campo Comunale, Fratticciola
+- **Fratta Santa Caterina** – *Seconda Categoria (Girone I)* • Campo Sportivo "A. Faralli", Fratta
+- **Fratticciola** – *Seconda Categoria (Girone I)* • Campo Comunale, Fratticciola
 - **Monsigliolo** – *Terza Categoria Arezzo (Girone A)* • Campo Sportivo "R. Burzi", Monsigliolo
 - **Montecchio** – *Terza Categoria Arezzo (Girone A)* • Campo Sportivo Montecchio Vesponi
 
@@ -22,7 +22,7 @@ Dashboard web interattiva per gli appassionati di calcio del **Comune di Cortona
   - Montecchio (17 partite interne)
 - **Tabelloni Ufficiali Completi Integrati**:
   - **Promozione Girone C**: Tutte le 15 giornate (120 partite andata e ritorno), inclusi anticipi ufficiali (es. Cortona Camucia vs Montagnano).
-  - **Seconda Categoria Girone G**: Tutte le 15 giornate (120 partite andata e ritorno) con i derby comunali tra Fratta e Fratticciola.
+  - **Seconda Categoria Girone I**: Tutte le 15 giornate (120 partite andata e ritorno) con i derby comunali tra Fratta e Fratticciola.
   - **Terza Categoria Girone A**: Tutte le 17 giornate (153 partite andata e ritorno) con i derby comunali tra Monsigliolo e Montecchio.
 - **Filtri & Navigazione Avanzata**:
   - Switcher a schede per passare istantaneamente tra i tre campionati nel modale;
