@@ -52,25 +52,19 @@
                 <i class="fa-solid fa-fire text-amber-500 text-xl shrink-0 animate-bounce"></i>
                 <span>I <strong>Derby Comunali</strong> sono evidenziati in oro con badge speciale.</span>
             </div>
-            <div class="flex items-center gap-2 w-full sm:w-auto">
-                <button onclick="toggleDerbyOnly()" id="derbyToggleBtn" class="flex-1 sm:flex-none px-3.5 py-2 bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-bold rounded-lg transition shadow flex items-center justify-center gap-2 active:scale-95">
+            <div class="flex flex-wrap items-center justify-center sm:justify-end gap-1.5 w-full sm:w-auto">
+                <button onclick="toggleDerbyOnly()" id="derbyToggleBtn" class="px-3 py-2 bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-bold rounded-lg transition shadow flex items-center justify-center gap-1.5 active:scale-95">
                     <i class="fa-solid fa-filter"></i> Solo Derby
                 </button>
-                <button onclick="openCalendarModal()" id="calendarModalBtn" class="flex-1 sm:flex-none px-3.5 py-2 bg-slate-800 hover:bg-slate-700 border border-amber-500/40 text-amber-400 text-xs font-bold rounded-lg transition shadow flex items-center justify-center gap-2 active:scale-95">
-                    <i class="fa-solid fa-calendar-days text-amber-400"></i> Calendario 2ª Cat.
+                <button onclick="openCalendarModal('promozione')" class="px-2.5 py-2 bg-slate-800 hover:bg-slate-700 border border-amber-500/40 text-amber-400 text-xs font-bold rounded-lg transition shadow flex items-center justify-center gap-1.5 active:scale-95" title="Calendario Promozione Girone C">
+                    <i class="fa-solid fa-calendar-days text-amber-400"></i> Promozione
                 </button>
-            </div>
-        </div>
-
-        <!-- Barra Filtri per Squadra (Touch & Scroll Orizzontale su Mobile) -->
-        <div class="mb-4">
-            <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 text-xs whitespace-nowrap">
-                <button class="filter-team-btn active px-3.5 py-2 rounded-lg font-bold bg-amber-500 text-slate-950 transition shrink-0" onclick="filterTeam('all', this)">Tutte (<span id="countAll">0</span>)</button>
-                <button class="filter-team-btn px-3.5 py-2 rounded-lg font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition shrink-0" onclick="filterTeam('Cortona Camucia', this)">Cortona Camucia</button>
-                <button class="filter-team-btn px-3.5 py-2 rounded-lg font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition shrink-0" onclick="filterTeam('Fratta Santa Caterina', this)">Fratta</button>
-                <button class="filter-team-btn px-3.5 py-2 rounded-lg font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition shrink-0" onclick="filterTeam('Fratticciola', this)">Fratticciola</button>
-                <button class="filter-team-btn px-3.5 py-2 rounded-lg font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition shrink-0" onclick="filterTeam('Monsigliolo', this)">Monsigliolo</button>
-                <button class="filter-team-btn px-3.5 py-2 rounded-lg font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition shrink-0" onclick="filterTeam('Montecchio', this)">Montecchio</button>
+                <button onclick="openCalendarModal('seconda')" class="px-2.5 py-2 bg-slate-800 hover:bg-slate-700 border border-amber-500/40 text-amber-400 text-xs font-bold rounded-lg transition shadow flex items-center justify-center gap-1.5 active:scale-95" title="Calendario Seconda Categoria Girone G">
+                    <i class="fa-solid fa-calendar-days text-amber-400"></i> 2ª Cat.
+                </button>
+                <button onclick="openCalendarModal('terza')" class="px-2.5 py-2 bg-slate-800 hover:bg-slate-700 border border-amber-500/40 text-amber-400 text-xs font-bold rounded-lg transition shadow flex items-center justify-center gap-1.5 active:scale-95" title="Calendario Terza Categoria Girone A">
+                    <i class="fa-solid fa-calendar-days text-amber-400"></i> 3ª Cat.
+                </button>
             </div>
         </div>
 
@@ -139,31 +133,56 @@
         <!-- Campi di Gioco -->
         <section class="mt-12 border-t border-slate-800 pt-6">
             <h2 class="text-sm sm:text-base font-bold text-white mb-3 text-center">Campi e Categorie Ufficiali (2026/2027)</h2>
-            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-[11px] text-slate-300">
-                <div class="p-2.5 bg-slate-800/60 rounded-lg border border-slate-700">
-                    <p class="font-bold text-amber-400">Stadio "Santi Tiezzi"</p>
-                    <p class="text-slate-300">Cortona Camucia</p>
-                    <span class="text-slate-500 text-[10px]">Promozione (Gir. C)</span>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-[11px] text-slate-300">
+                <div class="p-2.5 bg-slate-800/60 rounded-lg border border-slate-700 flex flex-col justify-between">
+                    <div>
+                        <p class="font-bold text-amber-400">Stadio "Santi Tiezzi"</p>
+                        <p class="text-slate-300">Cortona Camucia</p>
+                        <span class="text-slate-500 text-[10px] block">Promozione (Gir. C)</span>
+                    </div>
+                    <button onclick="openCalendarModal('promozione')" class="mt-2 text-[10px] font-bold text-amber-400 hover:text-amber-300 flex items-center gap-1 transition">
+                        <i class="fa-solid fa-calendar-days"></i> Calendario Gir. C
+                    </button>
                 </div>
-                <div class="p-2.5 bg-slate-800/60 rounded-lg border border-slate-700">
-                    <p class="font-bold text-amber-400">Campo "A. Faralli"</p>
-                    <p class="text-slate-300">Fratta S. Caterina</p>
-                    <span class="text-slate-500 text-[10px]">2ª Categoria</span>
+                <div class="p-2.5 bg-slate-800/60 rounded-lg border border-slate-700 flex flex-col justify-between">
+                    <div>
+                        <p class="font-bold text-amber-400">Campo "A. Faralli"</p>
+                        <p class="text-slate-300">Fratta S. Caterina</p>
+                        <span class="text-slate-500 text-[10px] block">2ª Categoria (Gir. G)</span>
+                    </div>
+                    <button onclick="openCalendarModal('seconda')" class="mt-2 text-[10px] font-bold text-amber-400 hover:text-amber-300 flex items-center gap-1 transition">
+                        <i class="fa-solid fa-calendar-days"></i> Calendario 2ª Cat.
+                    </button>
                 </div>
-                <div class="p-2.5 bg-slate-800/60 rounded-lg border border-slate-700">
-                    <p class="font-bold text-amber-400">Campo Fratticciola</p>
-                    <p class="text-slate-300">Fratticciola</p>
-                    <span class="text-slate-500 text-[10px]">2ª Categoria</span>
+                <div class="p-2.5 bg-slate-800/60 rounded-lg border border-slate-700 flex flex-col justify-between">
+                    <div>
+                        <p class="font-bold text-amber-400">Campo Fratticciola</p>
+                        <p class="text-slate-300">Fratticciola</p>
+                        <span class="text-slate-500 text-[10px] block">2ª Categoria (Gir. G)</span>
+                    </div>
+                    <button onclick="openCalendarModal('seconda')" class="mt-2 text-[10px] font-bold text-amber-400 hover:text-amber-300 flex items-center gap-1 transition">
+                        <i class="fa-solid fa-calendar-days"></i> Calendario 2ª Cat.
+                    </button>
                 </div>
-                <div class="p-2.5 bg-slate-800/60 rounded-lg border border-slate-700">
-                    <p class="font-bold text-amber-400">Campo "R. Burzi"</p>
-                    <p class="text-slate-300">Monsigliolo</p>
-                    <span class="text-slate-500 text-[10px]">3ª Categoria</span>
+                <div class="p-2.5 bg-slate-800/60 rounded-lg border border-slate-700 flex flex-col justify-between">
+                    <div>
+                        <p class="font-bold text-amber-400">Campo "R. Burzi"</p>
+                        <p class="text-slate-300">Monsigliolo</p>
+                        <span class="text-slate-500 text-[10px] block">3ª Categoria (Gir. A)</span>
+                    </div>
+                    <button onclick="openCalendarModal('terza')" class="mt-2 text-[10px] font-bold text-amber-400 hover:text-amber-300 flex items-center gap-1 transition">
+                        <i class="fa-solid fa-calendar-days"></i> Calendario 3ª Cat.
+                    </button>
                 </div>
-                <div class="p-2.5 bg-slate-800/60 rounded-lg border border-slate-700 col-span-2 sm:col-span-1">
-                    <p class="font-bold text-amber-400">Campo Montecchio</p>
-                    <p class="text-slate-300">Montecchio Vesponi</p>
-                    <span class="text-slate-500 text-[10px]">3ª Categoria</span>
+                <div class="p-2.5 bg-slate-800/60 rounded-lg border border-slate-700 flex flex-col justify-between col-span-2 sm:col-span-1">
+                    <div>
+                        <p class="font-bold text-amber-400">Campo "E. Viti"</p>
+                        <p class="text-slate-300">Montecchio Vesponi</p>
+                        <span class="text-slate-500 text-[10px] block">3ª Categoria (Gir. A)</span>
+                    </div>
+                    <button onclick="openCalendarModal('terza')" class="mt-2 text-[10px] font-bold text-amber-400 hover:text-amber-300 flex items-center gap-1 transition">
+                        <i class="fa-solid fa-calendar-days"></i> Calendario 3ª Cat.
+                    </button>
                 </div>
             </div>
         </section>
@@ -174,20 +193,35 @@
         <p>Comune di Cortona (AR) • Calendario Ufficiale Stagione 2026/2027</p>
     </footer>
 
-    <!-- Modal Calendario Completo Seconda Categoria (FIGC / LND) -->
+    <!-- Modal Calendario Completo Campionati FIGC / LND -->
     <div id="fullCalendarModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2 sm:p-4 overflow-y-auto">
         <div class="bg-slate-900 border border-amber-500/50 rounded-2xl max-w-4xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden my-auto">
+            
             <!-- Modal Header -->
             <div class="p-4 sm:p-5 bg-gradient-to-r from-slate-950 via-slate-900 to-amber-950/40 border-b border-slate-800 flex items-center justify-between">
                 <div>
                     <div class="flex items-center gap-2">
                         <span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-amber-500 text-slate-950">FIGC / LND</span>
-                        <h2 class="text-base sm:text-lg font-bold text-white">Calendario Ufficiale Seconda Categoria</h2>
+                        <h2 id="modalCategoryTitle" class="text-base sm:text-lg font-bold text-white">Calendario Ufficiale</h2>
                     </div>
-                    <p class="text-xs text-slate-400 mt-0.5">Tutte le 15 Giornate • Andata & Ritorno (Stagione 2026/2027)</p>
+                    <p id="modalCategorySubtitle" class="text-xs text-slate-400 mt-0.5">Tutte le Giornate • Andata & Ritorno (Stagione 2026/2027)</p>
                 </div>
                 <button onclick="closeCalendarModal()" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition">
                     <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Tab Selettore Categoria dentro il Modal -->
+            <div class="px-4 py-2.5 bg-slate-950/90 border-b border-slate-800 flex items-center gap-1.5 text-xs overflow-x-auto no-scrollbar">
+                <span class="text-[11px] font-bold text-slate-400 uppercase mr-1 shrink-0">Campionato:</span>
+                <button id="modalTabPromozione" onclick="switchModalCategory('promozione')" class="px-3 py-1.5 rounded-lg font-bold shrink-0 transition text-xs">
+                    Promozione (Gir. C)
+                </button>
+                <button id="modalTabSeconda" onclick="switchModalCategory('seconda')" class="px-3 py-1.5 rounded-lg font-semibold shrink-0 transition text-xs">
+                    Seconda Categoria (Gir. G)
+                </button>
+                <button id="modalTabTerza" onclick="switchModalCategory('terza')" class="px-3 py-1.5 rounded-lg font-semibold shrink-0 transition text-xs">
+                    Terza Categoria (Gir. A)
                 </button>
             </div>
 
@@ -205,7 +239,7 @@
                 <!-- Matches List -->
                 <div>
                     <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2.5 flex items-center gap-2">
-                        <span>Partite in Programma (Andata)</span>
+                        <span id="giornataMatchesHeader">Partite in Programma (Andata)</span>
                         <span class="text-[10px] font-normal text-slate-500">• Al ritorno le gare si giocano a campi invertiti</span>
                     </h3>
                     <div id="giornataMatchesList" class="grid grid-cols-1 md:grid-cols-2 gap-2.5"></div>
@@ -214,7 +248,7 @@
 
             <!-- Modal Footer -->
             <div class="p-3 sm:p-4 bg-slate-950 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
-                <span class="hidden sm:inline"><i class="fa-solid fa-fire text-amber-500 mr-1"></i>Fratta S. Caterina e Fratticciola evidenziate in oro</span>
+                <span id="modalLegendText" class="hidden sm:inline"><i class="fa-solid fa-fire text-amber-500 mr-1"></i>Squadre cortonesi evidenziate in oro</span>
                 <button onclick="closeCalendarModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold rounded-lg transition ml-auto">
                     Chiudi
                 </button>
@@ -225,96 +259,955 @@
     <!-- Database e Script -->
     <script>
         const matches = [
-            // =========================================================================
-            // CORTONA CAMUCIA (PROMOZIONE GIRONE C - TABELLONE UFFICIALE FIGC 2026/2027)
-            // =========================================================================
-            { isoDate: "2026-09-13", date: "Dom 13 Settembre 2026", time: "15:30", round: "1ª Andata", home: "Cortona Camucia", away: "Settignanese A.S.D.", stadium: 'Stadio "Santi Tiezzi", Camucia', category: "Promozione Gir. C", isDerby: false, isAnticipo: false },
-            { isoDate: "2026-09-26", date: "Sab 26 Settembre 2026", time: "15:30", round: "3ª Andata", home: "Cortona Camucia", away: "Montagnano 1966", stadium: 'Stadio "Santi Tiezzi", Camucia', category: "Promozione Gir. C", isDerby: false, isAnticipo: true }, // ANTICIPO AL SABATO
-            { isoDate: "2026-10-04", date: "Dom 04 Ottobre 2026", time: "15:30", round: "4ª Andata", home: "Cortona Camucia", away: "Acquaviva A.S.D.", stadium: 'Stadio "Santi Tiezzi", Camucia', category: "Promozione Gir. C", isDerby: false, isAnticipo: false },
-            { isoDate: "2026-10-18", date: "Dom 18 Ottobre 2026", time: "15:30", round: "6ª Andata", home: "Cortona Camucia", away: "Casentino Academy", stadium: 'Stadio "Santi Tiezzi", Camucia', category: "Promozione Gir. C", isDerby: false, isAnticipo: false },
-            { isoDate: "2026-11-01", date: "Dom 01 Novembre 2026", time: "14:30", round: "8ª Andata", home: "Cortona Camucia", away: "Centro Storico Lebowski", stadium: 'Stadio "Santi Tiezzi", Camucia', category: "Promozione Gir. C", isDerby: false, isAnticipo: false },
-            { isoDate: "2026-11-15", date: "Dom 15 Novembre 2026", time: "14:30", round: "10ª Andata", home: "Cortona Camucia", away: "Alberoro 1977", stadium: 'Stadio "Santi Tiezzi", Camucia', category: "Promozione Gir. C", isDerby: false, isAnticipo: false },
-            { isoDate: "2026-11-29", date: "Dom 29 Novembre 2026", time: "14:30", round: "12ª Andata", home: "Cortona Camucia", away: "Pontassieve", stadium: 'Stadio "Santi Tiezzi", Camucia', category: "Promozione Gir. C", isDerby: false, isAnticipo: false },
-            { isoDate: "2026-12-13", date: "Dom 13 Dicembre 2026", time: "14:30", round: "14ª Andata", home: "Cortona Camucia", away: "Affrico SSD A R.L.", stadium: 'Stadio "Santi Tiezzi", Camucia', category: "Promozione Gir. C", isDerby: false, isAnticipo: false },
-            { isoDate: "2027-01-10", date: "Dom 10 Gennaio 2027", time: "14:30", round: "2ª Ritorno", home: "Cortona Camucia", away: "Resco Reggello", stadium: 'Stadio "Santi Tiezzi", Camucia', category: "Promozione Gir. C", isDerby: false, isAnticipo: false },
-            { isoDate: "2027-01-31", date: "Dom 31 Gennaio 2027", time: "15:00", round: "5ª Ritorno", home: "Cortona Camucia", away: "Ideal Club Incisa", stadium: 'Stadio "Santi Tiezzi", Camucia', category: "Promozione Gir. C", isDerby: false, isAnticipo: false },
-            { isoDate: "2027-02-14", date: "Dom 14 Febbraio 2027", time: "15:00", round: "7ª Ritorno", home: "Cortona Camucia", away: "Alleanza Giovanile A.S.D.", stadium: 'Stadio "Santi Tiezzi", Camucia', category: "Promozione Gir. C", isDerby: false, isAnticipo: false },
-            { isoDate: "2027-02-28", date: "Dom 28 Febbraio 2027", time: "15:00", round: "9ª Ritorno", home: "Cortona Camucia", away: "F.C. Cubino", stadium: 'Stadio "Santi Tiezzi", Camucia', category: "Promozione Gir. C", isDerby: false, isAnticipo: false },
-            { isoDate: "2027-03-14", date: "Dom 14 Marzo 2027", time: "15:00", round: "11ª Ritorno", home: "Cortona Camucia", away: "Audace Galluzzo Oltrarno", stadium: 'Stadio "Santi Tiezzi", Camucia', category: "Promozione Gir. C", isDerby: false, isAnticipo: false },
-            { isoDate: "2027-04-11", date: "Dom 11 Aprile 2027", time: "15:30", round: "13ª Ritorno", home: "Cortona Camucia", away: "Nuova A.C. Foiano", stadium: 'Stadio "Santi Tiezzi", Camucia', category: "Promozione Gir. C", isDerby: false, isAnticipo: false },
-            { isoDate: "2027-04-25", date: "Dom 25 Aprile 2027", time: "16:00", round: "15ª Ritorno", home: "Cortona Camucia", away: "Sinalunghese A.S.D.", stadium: 'Stadio "Santi Tiezzi", Camucia', category: "Promozione Gir. C", isDerby: false, isAnticipo: false },
-
-            // ==========================================
-            // FRATTA SANTA CATERINA (Seconda Categoria - Girone LND)
-            // ==========================================
-            { isoDate: "2026-09-20", date: "Dom 20 Settembre 2026", time: "15:30", round: "1ª Andata • Derby del Comune", home: "Fratta Santa Caterina", away: "Fratticciola", stadium: 'Campo "A. Faralli", Fratta', category: "Seconda Categoria", isDerby: true, isAnticipo: false }, // DERBY
-            { isoDate: "2026-10-11", date: "Dom 11 Ottobre 2026", time: "15:30", round: "4ª Andata", home: "Fratta Santa Caterina", away: "Poppi", stadium: 'Campo "A. Faralli", Fratta', category: "Seconda Categoria", isDerby: false, isAnticipo: false },
-            { isoDate: "2026-10-25", date: "Dom 25 Ottobre 2026", time: "14:30", round: "6ª Andata", home: "Fratta Santa Caterina", away: "Rassina", stadium: 'Campo "A. Faralli", Fratta', category: "Seconda Categoria", isDerby: false, isAnticipo: false },
-            { isoDate: "2026-11-08", date: "Dom 08 Novembre 2026", time: "14:30", round: "8ª Andata", home: "Fratta Santa Caterina", away: "Fortis Arezzo", stadium: 'Campo "A. Faralli", Fratta', category: "Seconda Categoria", isDerby: false, isAnticipo: false },
-            { isoDate: "2026-11-22", date: "Dom 22 Novembre 2026", time: "14:30", round: "10ª Andata", home: "Fratta Santa Caterina", away: "Pieve al Toppo 06", stadium: 'Campo "A. Faralli", Fratta', category: "Seconda Categoria", isDerby: false, isAnticipo: false },
-            { isoDate: "2026-12-06", date: "Dom 06 Dicembre 2026", time: "14:30", round: "12ª Andata", home: "Fratta Santa Caterina", away: "Marino Mercato Subbiano", stadium: 'Campo "A. Faralli", Fratta', category: "Seconda Categoria", isDerby: false, isAnticipo: false },
-            { isoDate: "2026-12-20", date: "Dom 20 Dicembre 2026", time: "14:30", round: "14ª Andata", home: "Fratta Santa Caterina", away: "Bucine", stadium: 'Campo "A. Faralli", Fratta', category: "Seconda Categoria", isDerby: false, isAnticipo: false },
-            { isoDate: "2027-01-17", date: "Dom 17 Gennaio 2027", time: "15:00", round: "2ª Ritorno (17ª)", home: "Fratta Santa Caterina", away: "Arezzo Football Academy", stadium: 'Campo "A. Faralli", Fratta', category: "Seconda Categoria", isDerby: false, isAnticipo: false },
-            { isoDate: "2027-01-24", date: "Dom 24 Gennaio 2027", time: "15:00", round: "3ª Ritorno (18ª)", home: "Fratta Santa Caterina", away: "Guazzino S.S.D.", stadium: 'Campo "A. Faralli", Fratta', category: "Seconda Categoria", isDerby: false, isAnticipo: false },
-            { isoDate: "2027-02-07", date: "Dom 07 Febbraio 2027", time: "15:00", round: "5ª Ritorno (20ª)", home: "Fratta Santa Caterina", away: "Vaggio Piandiscò 1932", stadium: 'Campo "A. Faralli", Fratta', category: "Seconda Categoria", isDerby: false, isAnticipo: false },
-            { isoDate: "2027-02-21", date: "Dom 21 Febbraio 2027", time: "15:00", round: "7ª Ritorno (22ª)", home: "Fratta Santa Caterina", away: "Pratovecchio Pol. A.S.D.", stadium: 'Campo "A. Faralli", Fratta', category: "Seconda Categoria", isDerby: false, isAnticipo: false },
-            { isoDate: "2027-03-07", date: "Dom 07 Marzo 2027", time: "15:00", round: "9ª Ritorno (24ª)", home: "Fratta Santa Caterina", away: "M.C. Valdichiana Calcio", stadium: 'Campo "A. Faralli", Fratta', category: "Seconda Categoria", isDerby: false, isAnticipo: false },
-            { isoDate: "2027-04-04", date: "Dom 04 Aprile 2027", time: "15:30", round: "11ª Ritorno (26ª)", home: "Fratta Santa Caterina", away: "Arno Castiglioni Laterina", stadium: 'Campo "A. Faralli", Fratta', category: "Seconda Categoria", isDerby: false, isAnticipo: false },
-            { isoDate: "2027-04-18", date: "Dom 18 Aprile 2027", time: "16:00", round: "13ª Ritorno (28ª)", home: "Fratta Santa Caterina", away: "Fulgor Castelfranco", stadium: 'Campo "A. Faralli", Fratta', category: "Seconda Categoria", isDerby: false, isAnticipo: false },
-            { isoDate: "2027-05-02", date: "Dom 02 Maggio 2027", time: "16:00", round: "15ª Ritorno (30ª)", home: "Fratta Santa Caterina", away: "Calcio Pestello", stadium: 'Campo "A. Faralli", Fratta', category: "Seconda Categoria", isDerby: false, isAnticipo: false },
-
-            // ==========================================
-            // FRATTICCIOLA (Seconda Categoria - Girone LND)
-            // ==========================================
-            { isoDate: "2026-09-27", date: "Dom 27 Settembre 2026", time: "15:30", round: "2ª Andata", home: "Fratticciola", away: "Fortis Arezzo", stadium: "Campo Comunale, Fratticciola", category: "Seconda Categoria", isDerby: false, isAnticipo: false },
-            { isoDate: "2026-10-04", date: "Dom 04 Ottobre 2026", time: "15:30", round: "3ª Andata", home: "Fratticciola", away: "Arno Castiglioni Laterina", stadium: "Campo Comunale, Fratticciola", category: "Seconda Categoria", isDerby: false, isAnticipo: false },
-            { isoDate: "2026-10-18", date: "Dom 18 Ottobre 2026", time: "15:30", round: "5ª Andata", home: "Fratticciola", away: "Guazzino S.S.D.", stadium: "Campo Comunale, Fratticciola", category: "Seconda Categoria", isDerby: false, isAnticipo: false },
-            { isoDate: "2026-11-01", date: "Dom 01 Novembre 2026", time: "14:30", round: "7ª Andata", home: "Fratticciola", away: "Vaggio Piandiscò 1932", stadium: "Campo Comunale, Fratticciola", category: "Seconda Categoria", isDerby: false, isAnticipo: false },
-            { isoDate: "2026-11-15", date: "Dom 15 Novembre 2026", time: "14:30", round: "9ª Andata", home: "Fratticciola", away: "Poppi", stadium: "Campo Comunale, Fratticciola", category: "Seconda Categoria", isDerby: false, isAnticipo: false },
-            { isoDate: "2026-11-29", date: "Dom 29 Novembre 2026", time: "14:30", round: "11ª Andata", home: "Fratticciola", away: "Pratovecchio Pol. A.S.D.", stadium: "Campo Comunale, Fratticciola", category: "Seconda Categoria", isDerby: false, isAnticipo: false },
-            { isoDate: "2026-12-13", date: "Dom 13 Dicembre 2026", time: "14:30", round: "13ª Andata", home: "Fratticciola", away: "Rassina", stadium: "Campo Comunale, Fratticciola", category: "Seconda Categoria", isDerby: false, isAnticipo: false },
-            { isoDate: "2027-01-03", date: "Dom 03 Gennaio 2027", time: "14:30", round: "15ª Andata", home: "Fratticciola", away: "M.C. Valdichiana Calcio", stadium: "Campo Comunale, Fratticciola", category: "Seconda Categoria", isDerby: false, isAnticipo: false },
-            { isoDate: "2027-01-10", date: "Dom 10 Gennaio 2027", time: "14:30", round: "1ª Ritorno (16ª) • Derby del Comune", home: "Fratticciola", away: "Fratta Santa Caterina", stadium: "Campo Comunale, Fratticciola", category: "Seconda Categoria", isDerby: true, isAnticipo: false }, // DERBY
-            { isoDate: "2027-01-31", date: "Dom 31 Gennaio 2027", time: "15:00", round: "4ª Ritorno (19ª)", home: "Fratticciola", away: "Pieve al Toppo 06", stadium: "Campo Comunale, Fratticciola", category: "Seconda Categoria", isDerby: false, isAnticipo: false },
-            { isoDate: "2027-02-14", date: "Dom 14 Febbraio 2027", time: "15:00", round: "6ª Ritorno (21ª)", home: "Fratticciola", away: "Fulgor Castelfranco", stadium: "Campo Comunale, Fratticciola", category: "Seconda Categoria", isDerby: false, isAnticipo: false },
-            { isoDate: "2027-02-28", date: "Dom 28 Febbraio 2027", time: "15:00", round: "8ª Ritorno (23ª)", home: "Fratticciola", away: "Marino Mercato Subbiano", stadium: "Campo Comunale, Fratticciola", category: "Seconda Categoria", isDerby: false, isAnticipo: false },
-            { isoDate: "2027-03-14", date: "Dom 14 Marzo 2027", time: "15:00", round: "10ª Ritorno (25ª)", home: "Fratticciola", away: "Calcio Pestello", stadium: "Campo Comunale, Fratticciola", category: "Seconda Categoria", isDerby: false, isAnticipo: false },
-            { isoDate: "2027-04-11", date: "Dom 11 Aprile 2027", time: "15:30", round: "12ª Ritorno (27ª)", home: "Fratticciola", away: "Bucine", stadium: "Campo Comunale, Fratticciola", category: "Seconda Categoria", isDerby: false, isAnticipo: false },
-            { isoDate: "2027-04-25", date: "Dom 25 Aprile 2027", time: "16:00", round: "14ª Ritorno (29ª)", home: "Fratticciola", away: "Arezzo Football Academy", stadium: "Campo Comunale, Fratticciola", category: "Seconda Categoria", isDerby: false, isAnticipo: false },
-
-            // ==========================================
-            // MONSIGLIOLO (Terza Categoria)
-            // ==========================================
-            { isoDate: "2026-10-04", date: "Dom 04 Ottobre 2026", time: "15:30", round: "Campionato", home: "Monsigliolo", away: "Pietraia", stadium: 'Campo "R. Burzi", Monsigliolo', category: "Terza Categoria Arezzo", isDerby: false, isAnticipo: false },
-            { isoDate: "2026-10-18", date: "Dom 18 Ottobre 2026", time: "15:30", round: "Campionato", home: "Monsigliolo", away: "San Marco La Sella", stadium: 'Campo "R. Burzi", Monsigliolo', category: "Terza Categoria Arezzo", isDerby: false, isAnticipo: false },
-            { isoDate: "2026-11-01", date: "Dom 01 Novembre 2026", time: "14:30", round: "Campionato", home: "Monsigliolo", away: "Faellese", stadium: 'Campo "R. Burzi", Monsigliolo', category: "Terza Categoria Arezzo", isDerby: false, isAnticipo: false },
-            { isoDate: "2026-11-15", date: "Dom 15 Novembre 2026", time: "14:30", round: "Derby Andata", home: "Monsigliolo", away: "Montecchio", stadium: 'Campo "R. Burzi", Monsigliolo', category: "Terza Categoria Arezzo", isDerby: true, isAnticipo: false }, // DERBY
-            { isoDate: "2026-11-29", date: "Dom 29 Novembre 2026", time: "14:30", round: "Campionato", home: "Monsigliolo", away: "Terontola", stadium: 'Campo "R. Burzi", Monsigliolo', category: "Terza Categoria Arezzo", isDerby: false, isAnticipo: false },
-            { isoDate: "2026-12-13", date: "Dom 13 Dicembre 2026", time: "14:30", round: "Campionato", home: "Monsigliolo", away: "Monterchiese", stadium: 'Campo "R. Burzi", Monsigliolo', category: "Terza Categoria Arezzo", isDerby: false, isAnticipo: false },
-            { isoDate: "2027-01-10", date: "Dom 10 Gennaio 2027", time: "14:30", round: "Campionato", home: "Monsigliolo", away: "Tregozzano", stadium: 'Campo "R. Burzi", Monsigliolo', category: "Terza Categoria Arezzo", isDerby: false, isAnticipo: false },
-            { isoDate: "2027-01-24", date: "Dom 24 Gennaio 2027", time: "14:30", round: "Campionato", home: "Monsigliolo", away: "Badia Agnano", stadium: 'Campo "R. Burzi", Monsigliolo', category: "Terza Categoria Arezzo", isDerby: false, isAnticipo: false },
-            { isoDate: "2027-02-07", date: "Dom 07 Febbraio 2027", time: "15:00", round: "Campionato", home: "Monsigliolo", away: "Lorese Calcio", stadium: 'Campo "R. Burzi", Monsigliolo', category: "Terza Categoria Arezzo", isDerby: false, isAnticipo: false },
-            { isoDate: "2027-02-21", date: "Dom 21 Febbraio 2027", time: "15:00", round: "Campionato", home: "Monsigliolo", away: "Kerigma", stadium: 'Campo "R. Burzi", Monsigliolo', category: "Terza Categoria Arezzo", isDerby: false, isAnticipo: false },
-            { isoDate: "2027-03-07", date: "Dom 07 Marzo 2027", time: "15:00", round: "Campionato", home: "Monsigliolo", away: "Atletico Valdambra", stadium: 'Campo "R. Burzi", Monsigliolo', category: "Terza Categoria Arezzo", isDerby: false, isAnticipo: false },
-            { isoDate: "2027-03-21", date: "Dom 21 Marzo 2027", time: "15:30", round: "Campionato", home: "Monsigliolo", away: "Tuscar", stadium: 'Campo "R. Burzi", Monsigliolo', category: "Terza Categoria Arezzo", isDerby: false, isAnticipo: false },
-
-            // ==========================================
-            // MONTECCHIO (Terza Categoria)
-            // ==========================================
-            { isoDate: "2026-09-27", date: "Dom 27 Settembre 2026", time: "15:30", round: "Campionato", home: "Montecchio", away: "Colonna Indicatore", stadium: "Campo Sportivo Montecchio", category: "Terza Categoria Arezzo", isDerby: false, isAnticipo: false },
-            { isoDate: "2026-10-11", date: "Dom 11 Ottobre 2026", time: "15:30", round: "Campionato", home: "Montecchio", away: "San Leolino", stadium: "Campo Sportivo Montecchio", category: "Terza Categoria Arezzo", isDerby: false, isAnticipo: false },
-            { isoDate: "2026-10-25", date: "Dom 25 Ottobre 2026", time: "14:30", round: "Campionato", home: "Montecchio", away: "Terontola", stadium: "Campo Sportivo Montecchio", category: "Terza Categoria Arezzo", isDerby: false, isAnticipo: false },
-            { isoDate: "2026-11-08", date: "Dom 08 Novembre 2026", time: "14:30", round: "Campionato", home: "Montecchio", away: "Faellese", stadium: "Campo Sportivo Montecchio", category: "Terza Categoria Arezzo", isDerby: false, isAnticipo: false },
-            { isoDate: "2026-11-22", date: "Dom 22 Novembre 2026", time: "14:30", round: "Campionato", home: "Montecchio", away: "Monterchiese", stadium: "Campo Sportivo Montecchio", category: "Terza Categoria Arezzo", isDerby: false, isAnticipo: false },
-            { isoDate: "2026-12-06", date: "Dom 06 Dicembre 2026", time: "14:30", round: "Campionato", home: "Montecchio", away: "Pietraia", stadium: "Campo Sportivo Montecchio", category: "Terza Categoria Arezzo", isDerby: false, isAnticipo: false },
-            { isoDate: "2026-12-20", date: "Dom 20 Dicembre 2026", time: "14:30", round: "Campionato", home: "Montecchio", away: "Tregozzano", stadium: "Campo Sportivo Montecchio", category: "Terza Categoria Arezzo", isDerby: false, isAnticipo: false },
-            { isoDate: "2027-01-17", date: "Dom 17 Gennaio 2027", time: "14:30", round: "Campionato", home: "Montecchio", away: "Kerigma", stadium: "Campo Sportivo Montecchio", category: "Terza Categoria Arezzo", isDerby: false, isAnticipo: false },
-            { isoDate: "2027-01-31", date: "Dom 31 Gennaio 2027", time: "15:00", round: "Campionato", home: "Montecchio", away: "Lorese Calcio", stadium: "Campo Sportivo Montecchio", category: "Terza Categoria Arezzo", isDerby: false, isAnticipo: false },
-            { isoDate: "2027-02-14", date: "Dom 14 Febbraio 2027", time: "15:00", round: "Campionato", home: "Montecchio", away: "Badia Agnano", stadium: "Campo Sportivo Montecchio", category: "Terza Categoria Arezzo", isDerby: false, isAnticipo: false },
-            { isoDate: "2027-02-28", date: "Dom 28 Febbraio 2027", time: "15:00", round: "Derby Ritorno", home: "Montecchio", away: "Monsigliolo", stadium: "Campo Sportivo Montecchio", category: "Terza Categoria Arezzo", isDerby: true, isAnticipo: false }, // DERBY
-            { isoDate: "2027-03-14", date: "Dom 14 Marzo 2027", time: "15:00", round: "Campionato", home: "Montecchio", away: "San Marco La Sella", stadium: "Campo Sportivo Montecchio", category: "Terza Categoria Arezzo", isDerby: false, isAnticipo: false },
-            { isoDate: "2027-03-28", date: "Dom 28 Marzo 2027", time: "15:30", round: "Campionato", home: "Montecchio", away: "Tuscar", stadium: "Campo Sportivo Montecchio", category: "Terza Categoria Arezzo", isDerby: false, isAnticipo: false }
-        ];
+        {
+                "isoDate": "2026-09-13",
+                "date": "Dom 13 Settembre 2026",
+                "time": "15:30",
+                "round": "1ª Andata",
+                "home": "Cortona Camucia",
+                "away": "Settignanese A.S.D.",
+                "stadium": "Stadio \"Santi Tiezzi\", Camucia",
+                "category": "Promozione Gir. C",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2026-09-20",
+                "date": "Dom 20 Settembre 2026",
+                "time": "15:30",
+                "round": "1ª Andata • Derby del Comune",
+                "home": "Fratta Santa Caterina",
+                "away": "Fratticciola",
+                "stadium": "Campo \"A. Faralli\", Fratta",
+                "category": "Seconda Categoria",
+                "isDerby": true,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2026-09-26",
+                "date": "Sab 26 Settembre 2026",
+                "time": "15:30",
+                "round": "3ª Andata",
+                "home": "Cortona Camucia",
+                "away": "Montagnano 1966",
+                "stadium": "Stadio \"Santi Tiezzi\", Camucia",
+                "category": "Promozione Gir. C",
+                "isDerby": false,
+                "isAnticipo": true
+        },
+        {
+                "isoDate": "2026-09-27",
+                "date": "Dom 27 Settembre 2026",
+                "time": "15:30",
+                "round": "2ª Andata",
+                "home": "Fratticciola",
+                "away": "Fortis Arezzo",
+                "stadium": "Campo Comunale, Fratticciola",
+                "category": "Seconda Categoria",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2026-09-27",
+                "date": "Dom 27 Settembre 2026",
+                "time": "16:00",
+                "round": "2ª Andata",
+                "home": "Monsigliolo",
+                "away": "Lorese",
+                "stadium": "Campo \"R. Burzi\", Monsigliolo",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2026-09-27",
+                "date": "Dom 27 Settembre 2026",
+                "time": "16:00",
+                "round": "2ª Andata",
+                "home": "Montecchio",
+                "away": "Colonna Indicatore",
+                "stadium": "Campo Sportivo \"E. Viti\", Montecchio",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2026-10-04",
+                "date": "Dom 04 Ottobre 2026",
+                "time": "15:30",
+                "round": "4ª Andata",
+                "home": "Cortona Camucia",
+                "away": "Acquaviva A.S.D.",
+                "stadium": "Stadio \"Santi Tiezzi\", Camucia",
+                "category": "Promozione Gir. C",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2026-10-04",
+                "date": "Dom 04 Ottobre 2026",
+                "time": "15:30",
+                "round": "3ª Andata",
+                "home": "Fratticciola",
+                "away": "Arno Castiglioni Laterina",
+                "stadium": "Campo Comunale, Fratticciola",
+                "category": "Seconda Categoria",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2026-10-11",
+                "date": "Dom 11 Ottobre 2026",
+                "time": "15:30",
+                "round": "4ª Andata",
+                "home": "Fratta Santa Caterina",
+                "away": "Pieve al Toppo 06",
+                "stadium": "Campo \"A. Faralli\", Fratta",
+                "category": "Seconda Categoria",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2026-10-11",
+                "date": "Dom 11 Ottobre 2026",
+                "time": "15:30",
+                "round": "4ª Andata",
+                "home": "Monsigliolo",
+                "away": "Badia Agnano A.S.D.",
+                "stadium": "Campo \"R. Burzi\", Monsigliolo",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2026-10-11",
+                "date": "Dom 11 Ottobre 2026",
+                "time": "15:30",
+                "round": "4ª Andata",
+                "home": "Montecchio",
+                "away": "Tuscar",
+                "stadium": "Campo Sportivo \"E. Viti\", Montecchio",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2026-10-18",
+                "date": "Dom 18 Ottobre 2026",
+                "time": "15:30",
+                "round": "6ª Andata",
+                "home": "Cortona Camucia",
+                "away": "Casentino Academy",
+                "stadium": "Stadio \"Santi Tiezzi\", Camucia",
+                "category": "Promozione Gir. C",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2026-10-18",
+                "date": "Dom 18 Ottobre 2026",
+                "time": "15:30",
+                "round": "5ª Andata",
+                "home": "Fratticciola",
+                "away": "Guazzino S.S.D.",
+                "stadium": "Campo Comunale, Fratticciola",
+                "category": "Seconda Categoria",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2026-10-25",
+                "date": "Dom 25 Ottobre 2026",
+                "time": "14:30",
+                "round": "6ª Andata",
+                "home": "Fratta Santa Caterina",
+                "away": "Fulgor Castelfranco",
+                "stadium": "Campo \"A. Faralli\", Fratta",
+                "category": "Seconda Categoria",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2026-10-25",
+                "date": "Dom 25 Ottobre 2026",
+                "time": "14:30",
+                "round": "6ª Andata",
+                "home": "Montecchio",
+                "away": "Pian Di Sco",
+                "stadium": "Campo Sportivo \"E. Viti\", Montecchio",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2026-11-01",
+                "date": "Dom 01 Novembre 2026",
+                "time": "14:30",
+                "round": "8ª Andata",
+                "home": "Cortona Camucia",
+                "away": "Centro Storico Lebowski",
+                "stadium": "Stadio \"Santi Tiezzi\", Camucia",
+                "category": "Promozione Gir. C",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2026-11-01",
+                "date": "Dom 01 Novembre 2026",
+                "time": "14:30",
+                "round": "7ª Andata",
+                "home": "Fratticciola",
+                "away": "Vaggio Piandiscò 1932",
+                "stadium": "Campo Comunale, Fratticciola",
+                "category": "Seconda Categoria",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2026-11-01",
+                "date": "Dom 01 Novembre 2026",
+                "time": "14:30",
+                "round": "7ª Andata",
+                "home": "Monsigliolo",
+                "away": "Terontola A.S.D.",
+                "stadium": "Campo \"R. Burzi\", Monsigliolo",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2026-11-08",
+                "date": "Dom 08 Novembre 2026",
+                "time": "14:30",
+                "round": "8ª Andata",
+                "home": "Fratta Santa Caterina",
+                "away": "Marino Mercato Subbiano",
+                "stadium": "Campo \"A. Faralli\", Fratta",
+                "category": "Seconda Categoria",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2026-11-08",
+                "date": "Dom 08 Novembre 2026",
+                "time": "14:30",
+                "round": "8ª Andata",
+                "home": "Montecchio",
+                "away": "Terontola A.S.D.",
+                "stadium": "Campo Sportivo \"E. Viti\", Montecchio",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2026-11-15",
+                "date": "Dom 15 Novembre 2026",
+                "time": "14:30",
+                "round": "10ª Andata",
+                "home": "Cortona Camucia",
+                "away": "Alberoro 1977",
+                "stadium": "Stadio \"Santi Tiezzi\", Camucia",
+                "category": "Promozione Gir. C",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2026-11-15",
+                "date": "Dom 15 Novembre 2026",
+                "time": "14:30",
+                "round": "9ª Andata",
+                "home": "Fratticciola",
+                "away": "Poppi",
+                "stadium": "Campo Comunale, Fratticciola",
+                "category": "Seconda Categoria",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2026-11-15",
+                "date": "Dom 15 Novembre 2026",
+                "time": "14:30",
+                "round": "9ª Andata • Derby del Comune",
+                "home": "Monsigliolo",
+                "away": "Montecchio",
+                "stadium": "Campo \"R. Burzi\", Monsigliolo",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": true,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2026-11-22",
+                "date": "Dom 22 Novembre 2026",
+                "time": "14:30",
+                "round": "10ª Andata",
+                "home": "Fratta Santa Caterina",
+                "away": "Calcio Pestello",
+                "stadium": "Campo \"A. Faralli\", Fratta",
+                "category": "Seconda Categoria",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2026-11-22",
+                "date": "Dom 22 Novembre 2026",
+                "time": "14:30",
+                "round": "10ª Andata",
+                "home": "Montecchio",
+                "away": "Badia Agnano A.S.D.",
+                "stadium": "Campo Sportivo \"E. Viti\", Montecchio",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2026-11-29",
+                "date": "Dom 29 Novembre 2026",
+                "time": "14:30",
+                "round": "12ª Andata",
+                "home": "Cortona Camucia",
+                "away": "Pontassieve",
+                "stadium": "Stadio \"Santi Tiezzi\", Camucia",
+                "category": "Promozione Gir. C",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2026-11-29",
+                "date": "Dom 29 Novembre 2026",
+                "time": "14:30",
+                "round": "11ª Andata",
+                "home": "Fratticciola",
+                "away": "Pratovecchio Pol. A.S.D.",
+                "stadium": "Campo Comunale, Fratticciola",
+                "category": "Seconda Categoria",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2026-11-29",
+                "date": "Dom 29 Novembre 2026",
+                "time": "14:30",
+                "round": "11ª Andata",
+                "home": "Monsigliolo",
+                "away": "Atletico Valdambra",
+                "stadium": "Campo \"R. Burzi\", Monsigliolo",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2026-12-06",
+                "date": "Dom 06 Dicembre 2026",
+                "time": "14:30",
+                "round": "12ª Andata",
+                "home": "Fratta Santa Caterina",
+                "away": "Bucine",
+                "stadium": "Campo \"A. Faralli\", Fratta",
+                "category": "Seconda Categoria",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2026-12-13",
+                "date": "Dom 13 Dicembre 2026",
+                "time": "14:30",
+                "round": "14ª Andata",
+                "home": "Cortona Camucia",
+                "away": "Affrico SSD A R.L.",
+                "stadium": "Stadio \"Santi Tiezzi\", Camucia",
+                "category": "Promozione Gir. C",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2026-12-13",
+                "date": "Dom 13 Dicembre 2026",
+                "time": "14:30",
+                "round": "13ª Andata",
+                "home": "Fratticciola",
+                "away": "Rassina",
+                "stadium": "Campo Comunale, Fratticciola",
+                "category": "Seconda Categoria",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2026-12-13",
+                "date": "Dom 13 Dicembre 2026",
+                "time": "14:30",
+                "round": "13ª Andata",
+                "home": "Monsigliolo",
+                "away": "Pietraia A.S.D.",
+                "stadium": "Campo \"R. Burzi\", Monsigliolo",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2026-12-13",
+                "date": "Dom 13 Dicembre 2026",
+                "time": "14:30",
+                "round": "13ª Andata",
+                "home": "Montecchio",
+                "away": "Sangiustinese 2022",
+                "stadium": "Campo Sportivo \"E. Viti\", Montecchio",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2026-12-20",
+                "date": "Dom 20 Dicembre 2026",
+                "time": "14:30",
+                "round": "14ª Andata",
+                "home": "Fratta Santa Caterina",
+                "away": "Arezzo Football Academy",
+                "stadium": "Campo \"A. Faralli\", Fratta",
+                "category": "Seconda Categoria",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-01-03",
+                "date": "Dom 03 Gennaio 2027",
+                "time": "14:30",
+                "round": "15ª Andata",
+                "home": "Fratticciola",
+                "away": "M.C. Valdichiana Calcio",
+                "stadium": "Campo Comunale, Fratticciola",
+                "category": "Seconda Categoria",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-01-03",
+                "date": "Dom 03 Gennaio 2027",
+                "time": "14:30",
+                "round": "15ª Andata",
+                "home": "Monsigliolo",
+                "away": "San Leolino",
+                "stadium": "Campo \"R. Burzi\", Monsigliolo",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-01-03",
+                "date": "Dom 03 Gennaio 2027",
+                "time": "14:30",
+                "round": "15ª Andata",
+                "home": "Montecchio",
+                "away": "Badia a Roti Calcio",
+                "stadium": "Campo Sportivo \"E. Viti\", Montecchio",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-01-10",
+                "date": "Dom 10 Gennaio 2027",
+                "time": "14:30",
+                "round": "2ª Ritorno (17ª)",
+                "home": "Cortona Camucia",
+                "away": "Resco Reggello",
+                "stadium": "Stadio \"Santi Tiezzi\", Camucia",
+                "category": "Promozione Gir. C",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-01-10",
+                "date": "Dom 10 Gennaio 2027",
+                "time": "14:30",
+                "round": "1ª Ritorno (16ª) • Derby del Comune",
+                "home": "Fratticciola",
+                "away": "Fratta Santa Caterina",
+                "stadium": "Campo Comunale, Fratticciola",
+                "category": "Seconda Categoria",
+                "isDerby": true,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-01-17",
+                "date": "Dom 17 Gennaio 2027",
+                "time": "14:30",
+                "round": "2ª Ritorno (17ª)",
+                "home": "Fratta Santa Caterina",
+                "away": "Fortis Arezzo",
+                "stadium": "Campo \"A. Faralli\", Fratta",
+                "category": "Seconda Categoria",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-01-17",
+                "date": "Dom 17 Gennaio 2027",
+                "time": "15:00",
+                "round": "17ª Andata",
+                "home": "Monsigliolo",
+                "away": "S.Marco La Sella",
+                "stadium": "Campo \"R. Burzi\", Monsigliolo",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-01-17",
+                "date": "Dom 17 Gennaio 2027",
+                "time": "15:00",
+                "round": "17ª Andata",
+                "home": "Montecchio",
+                "away": "Faellese A.S.D.",
+                "stadium": "Campo Sportivo \"E. Viti\", Montecchio",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-01-24",
+                "date": "Dom 24 Gennaio 2027",
+                "time": "14:30",
+                "round": "3ª Ritorno (18ª)",
+                "home": "Fratta Santa Caterina",
+                "away": "Arno Castiglioni Laterina",
+                "stadium": "Campo \"A. Faralli\", Fratta",
+                "category": "Seconda Categoria",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-01-24",
+                "date": "Dom 24 Gennaio 2027",
+                "time": "15:00",
+                "round": "1ª Ritorno (18ª)",
+                "home": "Monsigliolo",
+                "away": "Tuscar",
+                "stadium": "Campo \"R. Burzi\", Monsigliolo",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-01-24",
+                "date": "Dom 24 Gennaio 2027",
+                "time": "15:00",
+                "round": "1ª Ritorno (18ª)",
+                "home": "Montecchio",
+                "away": "S.Marco La Sella",
+                "stadium": "Campo Sportivo \"E. Viti\", Montecchio",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-01-31",
+                "date": "Dom 31 Gennaio 2027",
+                "time": "15:00",
+                "round": "5ª Ritorno (20ª)",
+                "home": "Cortona Camucia",
+                "away": "Ideal Club Incisa",
+                "stadium": "Stadio \"Santi Tiezzi\", Camucia",
+                "category": "Promozione Gir. C",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-01-31",
+                "date": "Dom 31 Gennaio 2027",
+                "time": "15:00",
+                "round": "4ª Ritorno (19ª)",
+                "home": "Fratticciola",
+                "away": "Pieve al Toppo 06",
+                "stadium": "Campo Comunale, Fratticciola",
+                "category": "Seconda Categoria",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-02-07",
+                "date": "Dom 07 Febbraio 2027",
+                "time": "15:00",
+                "round": "5ª Ritorno (20ª)",
+                "home": "Fratta Santa Caterina",
+                "away": "Guazzino S.S.D.",
+                "stadium": "Campo \"A. Faralli\", Fratta",
+                "category": "Seconda Categoria",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-02-07",
+                "date": "Dom 07 Febbraio 2027",
+                "time": "15:00",
+                "round": "3ª Ritorno (20ª)",
+                "home": "Monsigliolo",
+                "away": "Virtus Arezzo",
+                "stadium": "Campo \"R. Burzi\", Monsigliolo",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-02-07",
+                "date": "Dom 07 Febbraio 2027",
+                "time": "15:00",
+                "round": "3ª Ritorno (20ª)",
+                "home": "Montecchio",
+                "away": "Tregozzano",
+                "stadium": "Campo Sportivo \"E. Viti\", Montecchio",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-02-14",
+                "date": "Dom 14 Febbraio 2027",
+                "time": "15:00",
+                "round": "7ª Ritorno (22ª)",
+                "home": "Cortona Camucia",
+                "away": "Alleanza Giovanile A.S.D.",
+                "stadium": "Stadio \"Santi Tiezzi\", Camucia",
+                "category": "Promozione Gir. C",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-02-14",
+                "date": "Dom 14 Febbraio 2027",
+                "time": "15:00",
+                "round": "6ª Ritorno (21ª)",
+                "home": "Fratticciola",
+                "away": "Fulgor Castelfranco",
+                "stadium": "Campo Comunale, Fratticciola",
+                "category": "Seconda Categoria",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-02-21",
+                "date": "Dom 21 Febbraio 2027",
+                "time": "15:00",
+                "round": "7ª Ritorno (22ª)",
+                "home": "Fratta Santa Caterina",
+                "away": "Vaggio Piandiscò 1932",
+                "stadium": "Campo \"A. Faralli\", Fratta",
+                "category": "Seconda Categoria",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-02-21",
+                "date": "Dom 21 Febbraio 2027",
+                "time": "15:00",
+                "round": "5ª Ritorno (22ª)",
+                "home": "Monsigliolo",
+                "away": "Pian Di Sco",
+                "stadium": "Campo \"R. Burzi\", Monsigliolo",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-02-21",
+                "date": "Dom 21 Febbraio 2027",
+                "time": "15:00",
+                "round": "5ª Ritorno (22ª)",
+                "home": "Montecchio",
+                "away": "Lorese",
+                "stadium": "Campo Sportivo \"E. Viti\", Montecchio",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-02-28",
+                "date": "Dom 28 Febbraio 2027",
+                "time": "15:00",
+                "round": "9ª Ritorno (24ª)",
+                "home": "Cortona Camucia",
+                "away": "F.C. Cubino",
+                "stadium": "Stadio \"Santi Tiezzi\", Camucia",
+                "category": "Promozione Gir. C",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-02-28",
+                "date": "Dom 28 Febbraio 2027",
+                "time": "15:00",
+                "round": "8ª Ritorno (23ª)",
+                "home": "Fratticciola",
+                "away": "Marino Mercato Subbiano",
+                "stadium": "Campo Comunale, Fratticciola",
+                "category": "Seconda Categoria",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-02-28",
+                "date": "Dom 28 Febbraio 2027",
+                "time": "15:00",
+                "round": "6ª Ritorno (23ª)",
+                "home": "Monsigliolo",
+                "away": "Monterchiese",
+                "stadium": "Campo \"R. Burzi\", Monsigliolo",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-03-07",
+                "date": "Dom 07 Marzo 2027",
+                "time": "15:00",
+                "round": "9ª Ritorno (24ª)",
+                "home": "Fratta Santa Caterina",
+                "away": "Poppi",
+                "stadium": "Campo \"A. Faralli\", Fratta",
+                "category": "Seconda Categoria",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-03-07",
+                "date": "Dom 07 Marzo 2027",
+                "time": "15:00",
+                "round": "7ª Ritorno (24ª)",
+                "home": "Montecchio",
+                "away": "Virtus Arezzo",
+                "stadium": "Campo Sportivo \"E. Viti\", Montecchio",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-03-14",
+                "date": "Dom 14 Marzo 2027",
+                "time": "15:00",
+                "round": "11ª Ritorno (26ª)",
+                "home": "Cortona Camucia",
+                "away": "Audace Galluzzo Oltrarno",
+                "stadium": "Stadio \"Santi Tiezzi\", Camucia",
+                "category": "Promozione Gir. C",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-03-14",
+                "date": "Dom 14 Marzo 2027",
+                "time": "15:00",
+                "round": "10ª Ritorno (25ª)",
+                "home": "Fratticciola",
+                "away": "Calcio Pestello",
+                "stadium": "Campo Comunale, Fratticciola",
+                "category": "Seconda Categoria",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-03-14",
+                "date": "Dom 14 Marzo 2027",
+                "time": "15:00",
+                "round": "8ª Ritorno (25ª)",
+                "home": "Monsigliolo",
+                "away": "Sangiustinese 2022",
+                "stadium": "Campo \"R. Burzi\", Monsigliolo",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-03-21",
+                "date": "Dom 21 Marzo 2027",
+                "time": "15:00",
+                "round": "11ª Ritorno (26ª)",
+                "home": "Fratta Santa Caterina",
+                "away": "Pratovecchio Pol. A.S.D.",
+                "stadium": "Campo \"A. Faralli\", Fratta",
+                "category": "Seconda Categoria",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-03-21",
+                "date": "Dom 21 Marzo 2027",
+                "time": "15:00",
+                "round": "9ª Ritorno (26ª) • Derby del Comune",
+                "home": "Montecchio",
+                "away": "Monsigliolo",
+                "stadium": "Campo Sportivo \"E. Viti\", Montecchio",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": true,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-04-04",
+                "date": "Dom 04 Aprile 2027",
+                "time": "15:30",
+                "round": "13ª Ritorno (28ª)",
+                "home": "Fratta Santa Caterina",
+                "away": "Rassina",
+                "stadium": "Campo \"A. Faralli\", Fratta",
+                "category": "Seconda Categoria",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-04-04",
+                "date": "Dom 04 Aprile 2027",
+                "time": "15:30",
+                "round": "10ª Ritorno (27ª)",
+                "home": "Monsigliolo",
+                "away": "Badia a Roti Calcio",
+                "stadium": "Campo \"R. Burzi\", Monsigliolo",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-04-11",
+                "date": "Dom 11 Aprile 2027",
+                "time": "15:30",
+                "round": "13ª Ritorno (28ª)",
+                "home": "Cortona Camucia",
+                "away": "Nuova A.C. Foiano",
+                "stadium": "Stadio \"Santi Tiezzi\", Camucia",
+                "category": "Promozione Gir. C",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-04-11",
+                "date": "Dom 11 Aprile 2027",
+                "time": "15:30",
+                "round": "12ª Ritorno (27ª)",
+                "home": "Fratticciola",
+                "away": "Bucine",
+                "stadium": "Campo Comunale, Fratticciola",
+                "category": "Seconda Categoria",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-04-11",
+                "date": "Dom 11 Aprile 2027",
+                "time": "15:30",
+                "round": "11ª Ritorno (28ª)",
+                "home": "Montecchio",
+                "away": "Monterchiese",
+                "stadium": "Campo Sportivo \"E. Viti\", Montecchio",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-04-18",
+                "date": "Dom 18 Aprile 2027",
+                "time": "16:00",
+                "round": "15ª Ritorno (30ª)",
+                "home": "Fratta Santa Caterina",
+                "away": "M.C. Valdichiana Calcio",
+                "stadium": "Campo \"A. Faralli\", Fratta",
+                "category": "Seconda Categoria",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-04-18",
+                "date": "Dom 18 Aprile 2027",
+                "time": "16:00",
+                "round": "12ª Ritorno (29ª)",
+                "home": "Monsigliolo",
+                "away": "Faellese A.S.D.",
+                "stadium": "Campo \"R. Burzi\", Monsigliolo",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-04-18",
+                "date": "Dom 18 Aprile 2027",
+                "time": "16:00",
+                "round": "12ª Ritorno (29ª)",
+                "home": "Montecchio",
+                "away": "Atletico Valdambra",
+                "stadium": "Campo Sportivo \"E. Viti\", Montecchio",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-04-25",
+                "date": "Dom 25 Aprile 2027",
+                "time": "16:00",
+                "round": "15ª Ritorno (30ª)",
+                "home": "Cortona Camucia",
+                "away": "Sinalunghese A.S.D.",
+                "stadium": "Stadio \"Santi Tiezzi\", Camucia",
+                "category": "Promozione Gir. C",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-04-25",
+                "date": "Dom 25 Aprile 2027",
+                "time": "16:00",
+                "round": "14ª Ritorno (29ª)",
+                "home": "Fratticciola",
+                "away": "Arezzo Football Academy",
+                "stadium": "Campo Comunale, Fratticciola",
+                "category": "Seconda Categoria",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-05-02",
+                "date": "Dom 02 Maggio 2027",
+                "time": "16:00",
+                "round": "14ª Ritorno (31ª)",
+                "home": "Monsigliolo",
+                "away": "Colonna Indicatore",
+                "stadium": "Campo \"R. Burzi\", Monsigliolo",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-05-02",
+                "date": "Dom 02 Maggio 2027",
+                "time": "16:00",
+                "round": "14ª Ritorno (31ª)",
+                "home": "Montecchio",
+                "away": "Pietraia A.S.D.",
+                "stadium": "Campo Sportivo \"E. Viti\", Montecchio",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-05-16",
+                "date": "Dom 16 Maggio 2027",
+                "time": "16:00",
+                "round": "16ª Ritorno (33ª)",
+                "home": "Monsigliolo",
+                "away": "Tregozzano",
+                "stadium": "Campo \"R. Burzi\", Monsigliolo",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": false,
+                "isAnticipo": false
+        },
+        {
+                "isoDate": "2027-05-16",
+                "date": "Dom 16 Maggio 2027",
+                "time": "16:00",
+                "round": "16ª Ritorno (33ª)",
+                "home": "Montecchio",
+                "away": "San Leolino",
+                "stadium": "Campo Sportivo \"E. Viti\", Montecchio",
+                "category": "Terza Categoria Arezzo",
+                "isDerby": false,
+                "isAnticipo": false
+        }
+];
 
         let activeTeam = 'all';
         let derbyOnly = false;
@@ -496,267 +1389,2225 @@
         }
 
         // =========================================================================
-        // CALENDARIO COMPLETO SECONDA CATEGORIA (FIGC / LND - 15 GIORNATE)
+        // CALENDARI COMPLETI (FIGC / LND 2026/2027)
         // =========================================================================
+        const promozioneFullCalendar = [
+        {
+                "g": 1,
+                "aD": "Dom 13 Settembre 2026",
+                "aT": "15:30",
+                "rD": "Dom 03 Gennaio 2027",
+                "rT": "14:30",
+                "m": [
+                        [
+                                "Acquaviva A.S.D.",
+                                "Resco Reggello"
+                        ],
+                        [
+                                "Alleanza Giovanile A.S.D.",
+                                "Affrico SSD A R.L."
+                        ],
+                        [
+                                "Audace Galluzzo Oltrarno",
+                                "Alberoro 1977"
+                        ],
+                        [
+                                "Casentino Academy",
+                                "Sinalunghese A.S.D."
+                        ],
+                        [
+                                "Centro Storico Lebowski",
+                                "Nuova A.C. Foiano"
+                        ],
+                        [
+                                "Cortona Camucia Calcio",
+                                "Settignanese A.S.D."
+                        ],
+                        [
+                                "F.C. Cubino",
+                                "Pontassieve"
+                        ],
+                        [
+                                "Montagnano 1966",
+                                "Ideal Club Incisa"
+                        ]
+                ]
+        },
+        {
+                "g": 2,
+                "aD": "Dom 20 Settembre 2026",
+                "aT": "15:30",
+                "rD": "Dom 10 Gennaio 2027",
+                "rT": "14:30",
+                "m": [
+                        [
+                                "Affrico SSD A R.L.",
+                                "Acquaviva A.S.D."
+                        ],
+                        [
+                                "Alberoro 1977",
+                                "Centro Storico Lebowski"
+                        ],
+                        [
+                                "Ideal Club Incisa",
+                                "Audace Galluzzo Oltrarno"
+                        ],
+                        [
+                                "Nuova A.C. Foiano",
+                                "F.C. Cubino"
+                        ],
+                        [
+                                "Pontassieve",
+                                "Casentino Academy"
+                        ],
+                        [
+                                "Resco Reggello",
+                                "Cortona Camucia Calcio"
+                        ],
+                        [
+                                "Settignanese A.S.D.",
+                                "Montagnano 1966"
+                        ],
+                        [
+                                "Sinalunghese A.S.D.",
+                                "Alleanza Giovanile A.S.D."
+                        ]
+                ]
+        },
+        {
+                "g": 3,
+                "aD": "Dom 27 Settembre 2026",
+                "aT": "15:30",
+                "rD": "Dom 17 Gennaio 2027",
+                "rT": "15:00",
+                "m": [
+                        [
+                                "Acquaviva A.S.D.",
+                                "Settignanese A.S.D."
+                        ],
+                        [
+                                "Alleanza Giovanile A.S.D.",
+                                "Resco Reggello"
+                        ],
+                        [
+                                "Audace Galluzzo Oltrarno",
+                                "Nuova A.C. Foiano"
+                        ],
+                        [
+                                "Casentino Academy",
+                                "Affrico SSD A R.L."
+                        ],
+                        [
+                                "Centro Storico Lebowski",
+                                "Pontassieve"
+                        ],
+                        [
+                                "Cortona Camucia Calcio",
+                                "Montagnano 1966",
+                                false,
+                                true,
+                                "Anticipo Sab 26/09 ore 15:30"
+                        ],
+                        [
+                                "F.C. Cubino",
+                                "Sinalunghese A.S.D."
+                        ],
+                        [
+                                "Ideal Club Incisa",
+                                "Alberoro 1977"
+                        ]
+                ]
+        },
+        {
+                "g": 4,
+                "aD": "Dom 04 Ottobre 2026",
+                "aT": "15:30",
+                "rD": "Dom 24 Gennaio 2027",
+                "rT": "15:00",
+                "m": [
+                        [
+                                "Affrico SSD A R.L.",
+                                "Centro Storico Lebowski"
+                        ],
+                        [
+                                "Cortona Camucia Calcio",
+                                "Acquaviva A.S.D."
+                        ],
+                        [
+                                "Montagnano 1966",
+                                "Alleanza Giovanile A.S.D."
+                        ],
+                        [
+                                "Nuova A.C. Foiano",
+                                "Ideal Club Incisa"
+                        ],
+                        [
+                                "Pontassieve",
+                                "Alberoro 1977"
+                        ],
+                        [
+                                "Resco Reggello",
+                                "F.C. Cubino"
+                        ],
+                        [
+                                "Settignanese A.S.D.",
+                                "Casentino Academy"
+                        ],
+                        [
+                                "Sinalunghese A.S.D.",
+                                "Audace Galluzzo Oltrarno"
+                        ]
+                ]
+        },
+        {
+                "g": 5,
+                "aD": "Dom 11 Ottobre 2026",
+                "aT": "15:30",
+                "rD": "Dom 31 Gennaio 2027",
+                "rT": "15:00",
+                "m": [
+                        [
+                                "Acquaviva A.S.D.",
+                                "Montagnano 1966"
+                        ],
+                        [
+                                "Alberoro 1977",
+                                "Nuova A.C. Foiano"
+                        ],
+                        [
+                                "Alleanza Giovanile A.S.D.",
+                                "Settignanese A.S.D."
+                        ],
+                        [
+                                "Audace Galluzzo Oltrarno",
+                                "Pontassieve"
+                        ],
+                        [
+                                "Casentino Academy",
+                                "Resco Reggello"
+                        ],
+                        [
+                                "Centro Storico Lebowski",
+                                "Sinalunghese A.S.D."
+                        ],
+                        [
+                                "F.C. Cubino",
+                                "Affrico SSD A R.L."
+                        ],
+                        [
+                                "Ideal Club Incisa",
+                                "Cortona Camucia Calcio"
+                        ]
+                ]
+        },
+        {
+                "g": 6,
+                "aD": "Dom 18 Ottobre 2026",
+                "aT": "15:30",
+                "rD": "Dom 07 Febbraio 2027",
+                "rT": "15:00",
+                "m": [
+                        [
+                                "Acquaviva A.S.D.",
+                                "Alleanza Giovanile A.S.D."
+                        ],
+                        [
+                                "Affrico SSD A R.L.",
+                                "Alberoro 1977"
+                        ],
+                        [
+                                "Cortona Camucia Calcio",
+                                "Casentino Academy"
+                        ],
+                        [
+                                "Montagnano 1966",
+                                "F.C. Cubino"
+                        ],
+                        [
+                                "Pontassieve",
+                                "Ideal Club Incisa"
+                        ],
+                        [
+                                "Resco Reggello",
+                                "Audace Galluzzo Oltrarno"
+                        ],
+                        [
+                                "Settignanese A.S.D.",
+                                "Centro Storico Lebowski"
+                        ],
+                        [
+                                "Sinalunghese A.S.D.",
+                                "Nuova A.C. Foiano"
+                        ]
+                ]
+        },
+        {
+                "g": 7,
+                "aD": "Dom 25 Ottobre 2026",
+                "aT": "14:30",
+                "rD": "Dom 14 Febbraio 2027",
+                "rT": "15:00",
+                "m": [
+                        [
+                                "Alberoro 1977",
+                                "Sinalunghese A.S.D."
+                        ],
+                        [
+                                "Alleanza Giovanile A.S.D.",
+                                "Cortona Camucia Calcio"
+                        ],
+                        [
+                                "Audace Galluzzo Oltrarno",
+                                "Affrico SSD A R.L."
+                        ],
+                        [
+                                "Casentino Academy",
+                                "Montagnano 1966"
+                        ],
+                        [
+                                "Centro Storico Lebowski",
+                                "Resco Reggello"
+                        ],
+                        [
+                                "F.C. Cubino",
+                                "Settignanese A.S.D."
+                        ],
+                        [
+                                "Ideal Club Incisa",
+                                "Acquaviva A.S.D."
+                        ],
+                        [
+                                "Nuova A.C. Foiano",
+                                "Pontassieve"
+                        ]
+                ]
+        },
+        {
+                "g": 8,
+                "aD": "Dom 01 Novembre 2026",
+                "aT": "14:30",
+                "rD": "Dom 21 Febbraio 2027",
+                "rT": "15:00",
+                "m": [
+                        [
+                                "Acquaviva A.S.D.",
+                                "F.C. Cubino"
+                        ],
+                        [
+                                "Affrico SSD A R.L.",
+                                "Pontassieve"
+                        ],
+                        [
+                                "Alleanza Giovanile A.S.D.",
+                                "Casentino Academy"
+                        ],
+                        [
+                                "Cortona Camucia Calcio",
+                                "Centro Storico Lebowski"
+                        ],
+                        [
+                                "Montagnano 1966",
+                                "Audace Galluzzo Oltrarno"
+                        ],
+                        [
+                                "Resco Reggello",
+                                "Nuova A.C. Foiano"
+                        ],
+                        [
+                                "Settignanese A.S.D.",
+                                "Alberoro 1977"
+                        ],
+                        [
+                                "Sinalunghese A.S.D.",
+                                "Ideal Club Incisa"
+                        ]
+                ]
+        },
+        {
+                "g": 9,
+                "aD": "Dom 08 Novembre 2026",
+                "aT": "14:30",
+                "rD": "Dom 28 Febbraio 2027",
+                "rT": "15:00",
+                "m": [
+                        [
+                                "Alberoro 1977",
+                                "Resco Reggello"
+                        ],
+                        [
+                                "Audace Galluzzo Oltrarno",
+                                "Settignanese A.S.D."
+                        ],
+                        [
+                                "Casentino Academy",
+                                "Acquaviva A.S.D."
+                        ],
+                        [
+                                "Centro Storico Lebowski",
+                                "Montagnano 1966"
+                        ],
+                        [
+                                "F.C. Cubino",
+                                "Cortona Camucia Calcio"
+                        ],
+                        [
+                                "Ideal Club Incisa",
+                                "Alleanza Giovanile A.S.D."
+                        ],
+                        [
+                                "Nuova A.C. Foiano",
+                                "Affrico SSD A R.L."
+                        ],
+                        [
+                                "Pontassieve",
+                                "Sinalunghese A.S.D."
+                        ]
+                ]
+        },
+        {
+                "g": 10,
+                "aD": "Dom 15 Novembre 2026",
+                "aT": "14:30",
+                "rD": "Dom 07 Marzo 2027",
+                "rT": "15:00",
+                "m": [
+                        [
+                                "Acquaviva A.S.D.",
+                                "Audace Galluzzo Oltrarno"
+                        ],
+                        [
+                                "Affrico SSD A R.L.",
+                                "Ideal Club Incisa"
+                        ],
+                        [
+                                "Alleanza Giovanile A.S.D.",
+                                "Centro Storico Lebowski"
+                        ],
+                        [
+                                "Casentino Academy",
+                                "F.C. Cubino"
+                        ],
+                        [
+                                "Cortona Camucia Calcio",
+                                "Alberoro 1977"
+                        ],
+                        [
+                                "Montagnano 1966",
+                                "Nuova A.C. Foiano"
+                        ],
+                        [
+                                "Resco Reggello",
+                                "Sinalunghese A.S.D."
+                        ],
+                        [
+                                "Settignanese A.S.D.",
+                                "Pontassieve"
+                        ]
+                ]
+        },
+        {
+                "g": 11,
+                "aD": "Dom 22 Novembre 2026",
+                "aT": "14:30",
+                "rD": "Dom 14 Marzo 2027",
+                "rT": "15:00",
+                "m": [
+                        [
+                                "Alberoro 1977",
+                                "Montagnano 1966"
+                        ],
+                        [
+                                "Audace Galluzzo Oltrarno",
+                                "Cortona Camucia Calcio"
+                        ],
+                        [
+                                "Centro Storico Lebowski",
+                                "Acquaviva A.S.D."
+                        ],
+                        [
+                                "F.C. Cubino",
+                                "Alleanza Giovanile A.S.D."
+                        ],
+                        [
+                                "Ideal Club Incisa",
+                                "Casentino Academy"
+                        ],
+                        [
+                                "Nuova A.C. Foiano",
+                                "Settignanese A.S.D."
+                        ],
+                        [
+                                "Pontassieve",
+                                "Resco Reggello"
+                        ],
+                        [
+                                "Sinalunghese A.S.D.",
+                                "Affrico SSD A R.L."
+                        ]
+                ]
+        },
+        {
+                "g": 12,
+                "aD": "Dom 29 Novembre 2026",
+                "aT": "14:30",
+                "rD": "Dom 04 Aprile 2027",
+                "rT": "15:30",
+                "m": [
+                        [
+                                "Acquaviva A.S.D.",
+                                "Nuova A.C. Foiano"
+                        ],
+                        [
+                                "Alleanza Giovanile A.S.D.",
+                                "Alberoro 1977"
+                        ],
+                        [
+                                "Casentino Academy",
+                                "Audace Galluzzo Oltrarno"
+                        ],
+                        [
+                                "Cortona Camucia Calcio",
+                                "Pontassieve"
+                        ],
+                        [
+                                "F.C. Cubino",
+                                "Centro Storico Lebowski"
+                        ],
+                        [
+                                "Montagnano 1966",
+                                "Sinalunghese A.S.D."
+                        ],
+                        [
+                                "Resco Reggello",
+                                "Ideal Club Incisa"
+                        ],
+                        [
+                                "Settignanese A.S.D.",
+                                "Affrico SSD A R.L."
+                        ]
+                ]
+        },
+        {
+                "g": 13,
+                "aD": "Dom 06 Dicembre 2026",
+                "aT": "14:30",
+                "rD": "Dom 11 Aprile 2027",
+                "rT": "15:30",
+                "m": [
+                        [
+                                "Affrico SSD A R.L.",
+                                "Resco Reggello"
+                        ],
+                        [
+                                "Alberoro 1977",
+                                "Acquaviva A.S.D."
+                        ],
+                        [
+                                "Audace Galluzzo Oltrarno",
+                                "Alleanza Giovanile A.S.D."
+                        ],
+                        [
+                                "Centro Storico Lebowski",
+                                "Casentino Academy"
+                        ],
+                        [
+                                "Ideal Club Incisa",
+                                "F.C. Cubino"
+                        ],
+                        [
+                                "Nuova A.C. Foiano",
+                                "Cortona Camucia Calcio"
+                        ],
+                        [
+                                "Pontassieve",
+                                "Montagnano 1966"
+                        ],
+                        [
+                                "Sinalunghese A.S.D.",
+                                "Settignanese A.S.D."
+                        ]
+                ]
+        },
+        {
+                "g": 14,
+                "aD": "Dom 13 Dicembre 2026",
+                "aT": "14:30",
+                "rD": "Dom 18 Aprile 2027",
+                "rT": "16:00",
+                "m": [
+                        [
+                                "Acquaviva A.S.D.",
+                                "Sinalunghese A.S.D."
+                        ],
+                        [
+                                "Alleanza Giovanile A.S.D.",
+                                "Pontassieve"
+                        ],
+                        [
+                                "Casentino Academy",
+                                "Nuova A.C. Foiano"
+                        ],
+                        [
+                                "Centro Storico Lebowski",
+                                "Audace Galluzzo Oltrarno"
+                        ],
+                        [
+                                "Cortona Camucia Calcio",
+                                "Affrico SSD A R.L."
+                        ],
+                        [
+                                "F.C. Cubino",
+                                "Alberoro 1977"
+                        ],
+                        [
+                                "Montagnano 1966",
+                                "Resco Reggello"
+                        ],
+                        [
+                                "Settignanese A.S.D.",
+                                "Ideal Club Incisa"
+                        ]
+                ]
+        },
+        {
+                "g": 15,
+                "aD": "Dom 20 Dicembre 2026",
+                "aT": "14:30",
+                "rD": "Dom 25 Aprile 2027",
+                "rT": "16:00",
+                "m": [
+                        [
+                                "Affrico SSD A R.L.",
+                                "Montagnano 1966"
+                        ],
+                        [
+                                "Alberoro 1977",
+                                "Casentino Academy"
+                        ],
+                        [
+                                "Audace Galluzzo Oltrarno",
+                                "F.C. Cubino"
+                        ],
+                        [
+                                "Ideal Club Incisa",
+                                "Centro Storico Lebowski"
+                        ],
+                        [
+                                "Nuova A.C. Foiano",
+                                "Alleanza Giovanile A.S.D."
+                        ],
+                        [
+                                "Pontassieve",
+                                "Acquaviva A.S.D."
+                        ],
+                        [
+                                "Resco Reggello",
+                                "Settignanese A.S.D."
+                        ],
+                        [
+                                "Sinalunghese A.S.D.",
+                                "Cortona Camucia Calcio"
+                        ]
+                ]
+        }
+];
+
         const secondaCategoriaFullCalendar = [
-            { g: 1, aD: "Dom 20 Settembre 2026", aT: "15:30", rD: "Dom 10 Gennaio 2027", rT: "14:30", m: [
-                ["Fortis Arezzo", "Arno Castiglioni Laterina"],
-                ["Fratta S.Caterina", "Fratticciola", true],
-                ["Guazzino S.S.D.", "Arezzo Football Academy"],
-                ["M.C. Valdichiana Calcio", "Pieve al Toppo 06"],
-                ["Poppi", "Calcio Pestello"],
-                ["Pratovecchio Pol. A.S.D.", "Marino Mercato Subbiano"],
-                ["Rassina", "Fulgor Castelfranco"],
-                ["Vaggio Piandiscò 1932", "Bucine"]
-            ]},
-            { g: 2, aD: "Dom 27 Settembre 2026", aT: "15:30", rD: "Dom 17 Gennaio 2027", rT: "15:00", m: [
-                ["Arezzo Football Academy", "Fratta S.Caterina"],
-                ["Arno Castiglioni Laterina", "M.C. Valdichiana Calcio"],
-                ["Bucine", "Guazzino S.S.D."],
-                ["Calcio Pestello", "Vaggio Piandiscò 1932"],
-                ["Fratticciola", "Fortis Arezzo"],
-                ["Fulgor Castelfranco", "Pratovecchio Pol. A.S.D."],
-                ["Marino Mercato Subbiano", "Poppi"],
-                ["Pieve al Toppo 06", "Rassina"]
-            ]},
-            { g: 3, aD: "Dom 04 Ottobre 2026", aT: "15:30", rD: "Dom 24 Gennaio 2027", rT: "15:00", m: [
-                ["Fortis Arezzo", "Pieve al Toppo 06"],
-                ["Fratticciola", "Arno Castiglioni Laterina"],
-                ["Guazzino S.S.D.", "Fratta S.Caterina"],
-                ["M.C. Valdichiana Calcio", "Fulgor Castelfranco"],
-                ["Poppi", "Bucine"],
-                ["Pratovecchio Pol. A.S.D.", "Calcio Pestello"],
-                ["Rassina", "Marino Mercato Subbiano"],
-                ["Vaggio Piandiscò 1932", "Arezzo Football Academy"]
-            ]},
-            { g: 4, aD: "Dom 11 Ottobre 2026", aT: "15:30", rD: "Dom 31 Gennaio 2027", rT: "15:00", m: [
-                ["Arezzo Football Academy", "Pratovecchio Pol. A.S.D."],
-                ["Bucine", "Rassina"],
-                ["Calcio Pestello", "M.C. Valdichiana Calcio"],
-                ["Fratta S.Caterina", "Poppi"],
-                ["Fulgor Castelfranco", "Arno Castiglioni Laterina"],
-                ["Guazzino S.S.D.", "Vaggio Piandiscò 1932"],
-                ["Marino Mercato Subbiano", "Fortis Arezzo"],
-                ["Pieve al Toppo 06", "Fratticciola"]
-            ]},
-            { g: 5, aD: "Dom 18 Ottobre 2026", aT: "15:30", rD: "Dom 07 Febbraio 2027", rT: "15:00", m: [
-                ["Arno Castiglioni Laterina", "Pieve al Toppo 06"],
-                ["Fortis Arezzo", "Fulgor Castelfranco"],
-                ["Fratticciola", "Guazzino S.S.D."],
-                ["M.C. Valdichiana Calcio", "Marino Mercato Subbiano"],
-                ["Poppi", "Arezzo Football Academy"],
-                ["Pratovecchio Pol. A.S.D.", "Bucine"],
-                ["Rassina", "Calcio Pestello"],
-                ["Vaggio Piandiscò 1932", "Fratta S.Caterina"]
-            ]},
-            { g: 6, aD: "Dom 25 Ottobre 2026", aT: "14:30", rD: "Dom 14 Febbraio 2027", rT: "15:00", m: [
-                ["Arezzo Football Academy", "M.C. Valdichiana Calcio"],
-                ["Bucine", "Fortis Arezzo"],
-                ["Calcio Pestello", "Arno Castiglioni Laterina"],
-                ["Fratta S.Caterina", "Rassina"],
-                ["Fulgor Castelfranco", "Fratticciola"],
-                ["Guazzino S.S.D.", "Pratovecchio Pol. A.S.D."],
-                ["Marino Mercato Subbiano", "Pieve al Toppo 06"],
-                ["Vaggio Piandiscò 1932", "Poppi"]
-            ]},
-            { g: 7, aD: "Dom 01 Novembre 2026", aT: "14:30", rD: "Dom 21 Febbraio 2027", rT: "15:00", m: [
-                ["Arno Castiglioni Laterina", "Marino Mercato Subbiano"],
-                ["Fortis Arezzo", "Calcio Pestello"],
-                ["Fratticciola", "Vaggio Piandiscò 1932"],
-                ["M.C. Valdichiana Calcio", "Bucine"],
-                ["Pieve al Toppo 06", "Fulgor Castelfranco"],
-                ["Poppi", "Guazzino S.S.D."],
-                ["Pratovecchio Pol. A.S.D.", "Fratta S.Caterina"],
-                ["Rassina", "Arezzo Football Academy"]
-            ]},
-            { g: 8, aD: "Dom 08 Novembre 2026", aT: "14:30", rD: "Dom 28 Febbraio 2027", rT: "15:00", m: [
-                ["Arezzo Football Academy", "Arno Castiglioni Laterina"],
-                ["Bucine", "Pieve al Toppo 06"],
-                ["Calcio Pestello", "Fulgor Castelfranco"],
-                ["Fratta S.Caterina", "Fortis Arezzo"],
-                ["Guazzino S.S.D.", "M.C. Valdichiana Calcio"],
-                ["Marino Mercato Subbiano", "Fratticciola"],
-                ["Poppi", "Pratovecchio Pol. A.S.D."],
-                ["Vaggio Piandiscò 1932", "Rassina"]
-            ]},
-            { g: 9, aD: "Dom 15 Novembre 2026", aT: "14:30", rD: "Dom 07 Marzo 2027", rT: "15:00", m: [
-                ["Arno Castiglioni Laterina", "Bucine"],
-                ["Fortis Arezzo", "Arezzo Football Academy"],
-                ["Fratticciola", "Poppi"],
-                ["Fulgor Castelfranco", "Marino Mercato Subbiano"],
-                ["M.C. Valdichiana Calcio", "Fratta S.Caterina"],
-                ["Pieve al Toppo 06", "Calcio Pestello"],
-                ["Pratovecchio Pol. A.S.D.", "Vaggio Piandiscò 1932"],
-                ["Rassina", "Guazzino S.S.D."]
-            ]},
-            { g: 10, aD: "Dom 22 Novembre 2026", aT: "14:30", rD: "Dom 14 Marzo 2027", rT: "15:00", m: [
-                ["Arezzo Football Academy", "Fulgor Castelfranco"],
-                ["Bucine", "Marino Mercato Subbiano"],
-                ["Calcio Pestello", "Fratticciola"],
-                ["Fratta S.Caterina", "Pieve al Toppo 06"],
-                ["Guazzino S.S.D.", "Arno Castiglioni Laterina"],
-                ["Poppi", "M.C. Valdichiana Calcio"],
-                ["Pratovecchio Pol. A.S.D.", "Rassina"],
-                ["Vaggio Piandiscò 1932", "Fortis Arezzo"]
-            ]},
-            { g: 11, aD: "Dom 29 Novembre 2026", aT: "14:30", rD: "Dom 04 Aprile 2027", rT: "15:30", m: [
-                ["Arno Castiglioni Laterina", "Fratta S.Caterina"],
-                ["Fortis Arezzo", "Guazzino S.S.D."],
-                ["Fratticciola", "Pratovecchio Pol. A.S.D."],
-                ["Fulgor Castelfranco", "Bucine"],
-                ["M.C. Valdichiana Calcio", "Vaggio Piandiscò 1932"],
-                ["Marino Mercato Subbiano", "Calcio Pestello"],
-                ["Pieve al Toppo 06", "Arezzo Football Academy"],
-                ["Rassina", "Poppi"]
-            ]},
-            { g: 12, aD: "Dom 06 Dicembre 2026", aT: "14:30", rD: "Dom 11 Aprile 2027", rT: "15:30", m: [
-                ["Arezzo Football Academy", "Calcio Pestello"],
-                ["Bucine", "Fratticciola"],
-                ["Fratta S.Caterina", "Marino Mercato Subbiano"],
-                ["Guazzino S.S.D.", "Fulgor Castelfranco"],
-                ["Poppi", "Arno Castiglioni Laterina"],
-                ["Pratovecchio Pol. A.S.D.", "Fortis Arezzo"],
-                ["Rassina", "M.C. Valdichiana Calcio"],
-                ["Vaggio Piandiscò 1932", "Pieve al Toppo 06"]
-            ]},
-            { g: 13, aD: "Dom 13 Dicembre 2026", aT: "14:30", rD: "Dom 18 Aprile 2027", rT: "16:00", m: [
-                ["Arno Castiglioni Laterina", "Vaggio Piandiscò 1932"],
-                ["Calcio Pestello", "Bucine"],
-                ["Fortis Arezzo", "Poppi"],
-                ["Fratticciola", "Rassina"],
-                ["Fulgor Castelfranco", "Fratta S.Caterina"],
-                ["M.C. Valdichiana Calcio", "Pratovecchio Pol. A.S.D."],
-                ["Marino Mercato Subbiano", "Arezzo Football Academy"],
-                ["Pieve al Toppo 06", "Guazzino S.S.D."]
-            ]},
-            { g: 14, aD: "Dom 20 Dicembre 2026", aT: "14:30", rD: "Dom 25 Aprile 2027", rT: "16:00", m: [
-                ["Arezzo Football Academy", "Fratticciola"],
-                ["Fratta S.Caterina", "Bucine"],
-                ["Guazzino S.S.D.", "Calcio Pestello"],
-                ["M.C. Valdichiana Calcio", "Fortis Arezzo"],
-                ["Poppi", "Fulgor Castelfranco"],
-                ["Pratovecchio Pol. A.S.D.", "Pieve al Toppo 06"],
-                ["Rassina", "Arno Castiglioni Laterina"],
-                ["Vaggio Piandiscò 1932", "Marino Mercato Subbiano"]
-            ]},
-            { g: 15, aD: "Dom 03 Gennaio 2027", aT: "14:30", rD: "Dom 02 Maggio 2027", rT: "16:00", m: [
-                ["Arno Castiglioni Laterina", "Pratovecchio Pol. A.S.D."],
-                ["Bucine", "Arezzo Football Academy"],
-                ["Calcio Pestello", "Fratta S.Caterina"],
-                ["Fortis Arezzo", "Rassina"],
-                ["Fratticciola", "M.C. Valdichiana Calcio"],
-                ["Fulgor Castelfranco", "Vaggio Piandiscò 1932"],
-                ["Marino Mercato Subbiano", "Guazzino S.S.D."],
-                ["Pieve al Toppo 06", "Poppi"]
-            ]}
-        ];
-
-        let selectedModalGiornata = 1;
-
-        function openCalendarModal() {
-            document.getElementById('fullCalendarModal').classList.remove('hidden');
-            renderModalPills();
-            showGiornata(selectedModalGiornata);
+        {
+                "g": 1,
+                "aD": "Dom 20 Settembre 2026",
+                "aT": "15:30",
+                "rD": "Dom 10 Gennaio 2027",
+                "rT": "14:30",
+                "m": [
+                        [
+                                "Fortis Arezzo",
+                                "Arno Castiglioni Laterina"
+                        ],
+                        [
+                                "Fratta S.Caterina",
+                                "Fratticciola",
+                                true
+                        ],
+                        [
+                                "Guazzino S.S.D.",
+                                "Arezzo Football Academy"
+                        ],
+                        [
+                                "M.C. Valdichiana Calcio",
+                                "Pieve al Toppo 06"
+                        ],
+                        [
+                                "Poppi",
+                                "Calcio Pestello"
+                        ],
+                        [
+                                "Pratovecchio Pol. A.S.D.",
+                                "Marino Mercato Subbiano"
+                        ],
+                        [
+                                "Rassina",
+                                "Fulgor Castelfranco"
+                        ],
+                        [
+                                "Vaggio Piandiscò 1932",
+                                "Bucine"
+                        ]
+                ]
+        },
+        {
+                "g": 2,
+                "aD": "Dom 27 Settembre 2026",
+                "aT": "15:30",
+                "rD": "Dom 17 Gennaio 2027",
+                "rT": "15:00",
+                "m": [
+                        [
+                                "Arezzo Football Academy",
+                                "Fratta S.Caterina"
+                        ],
+                        [
+                                "Arno Castiglioni Laterina",
+                                "M.C. Valdichiana Calcio"
+                        ],
+                        [
+                                "Bucine",
+                                "Guazzino S.S.D."
+                        ],
+                        [
+                                "Calcio Pestello",
+                                "Vaggio Piandiscò 1932"
+                        ],
+                        [
+                                "Fratticciola",
+                                "Fortis Arezzo"
+                        ],
+                        [
+                                "Fulgor Castelfranco",
+                                "Pratovecchio Pol. A.S.D."
+                        ],
+                        [
+                                "Marino Mercato Subbiano",
+                                "Poppi"
+                        ],
+                        [
+                                "Pieve al Toppo 06",
+                                "Rassina"
+                        ]
+                ]
+        },
+        {
+                "g": 3,
+                "aD": "Dom 04 Ottobre 2026",
+                "aT": "15:30",
+                "rD": "Dom 24 Gennaio 2027",
+                "rT": "15:00",
+                "m": [
+                        [
+                                "Fortis Arezzo",
+                                "Pieve al Toppo 06"
+                        ],
+                        [
+                                "Fratticciola",
+                                "Arno Castiglioni Laterina"
+                        ],
+                        [
+                                "Guazzino S.S.D.",
+                                "Fratta S.Caterina"
+                        ],
+                        [
+                                "M.C. Valdichiana Calcio",
+                                "Fulgor Castelfranco"
+                        ],
+                        [
+                                "Poppi",
+                                "Bucine"
+                        ],
+                        [
+                                "Pratovecchio Pol. A.S.D.",
+                                "Calcio Pestello"
+                        ],
+                        [
+                                "Rassina",
+                                "Marino Mercato Subbiano"
+                        ],
+                        [
+                                "Vaggio Piandiscò 1932",
+                                "Arezzo Football Academy"
+                        ]
+                ]
+        },
+        {
+                "g": 4,
+                "aD": "Dom 11 Ottobre 2026",
+                "aT": "15:30",
+                "rD": "Dom 31 Gennaio 2027",
+                "rT": "15:00",
+                "m": [
+                        [
+                                "Arezzo Football Academy",
+                                "Pratovecchio Pol. A.S.D."
+                        ],
+                        [
+                                "Bucine",
+                                "Rassina"
+                        ],
+                        [
+                                "Calcio Pestello",
+                                "M.C. Valdichiana Calcio"
+                        ],
+                        [
+                                "Fratta S.Caterina",
+                                "Poppi"
+                        ],
+                        [
+                                "Fulgor Castelfranco",
+                                "Arno Castiglioni Laterina"
+                        ],
+                        [
+                                "Guazzino S.S.D.",
+                                "Vaggio Piandiscò 1932"
+                        ],
+                        [
+                                "Marino Mercato Subbiano",
+                                "Fortis Arezzo"
+                        ],
+                        [
+                                "Pieve al Toppo 06",
+                                "Fratticciola"
+                        ]
+                ]
+        },
+        {
+                "g": 5,
+                "aD": "Dom 18 Ottobre 2026",
+                "aT": "15:30",
+                "rD": "Dom 07 Febbraio 2027",
+                "rT": "15:00",
+                "m": [
+                        [
+                                "Arno Castiglioni Laterina",
+                                "Pieve al Toppo 06"
+                        ],
+                        [
+                                "Fortis Arezzo",
+                                "Fulgor Castelfranco"
+                        ],
+                        [
+                                "Fratticciola",
+                                "Guazzino S.S.D."
+                        ],
+                        [
+                                "M.C. Valdichiana Calcio",
+                                "Marino Mercato Subbiano"
+                        ],
+                        [
+                                "Poppi",
+                                "Arezzo Football Academy"
+                        ],
+                        [
+                                "Pratovecchio Pol. A.S.D.",
+                                "Bucine"
+                        ],
+                        [
+                                "Rassina",
+                                "Calcio Pestello"
+                        ],
+                        [
+                                "Vaggio Piandiscò 1932",
+                                "Fratta S.Caterina"
+                        ]
+                ]
+        },
+        {
+                "g": 6,
+                "aD": "Dom 25 Ottobre 2026",
+                "aT": "14:30",
+                "rD": "Dom 14 Febbraio 2027",
+                "rT": "15:00",
+                "m": [
+                        [
+                                "Arezzo Football Academy",
+                                "M.C. Valdichiana Calcio"
+                        ],
+                        [
+                                "Bucine",
+                                "Fortis Arezzo"
+                        ],
+                        [
+                                "Calcio Pestello",
+                                "Arno Castiglioni Laterina"
+                        ],
+                        [
+                                "Fratta S.Caterina",
+                                "Rassina"
+                        ],
+                        [
+                                "Fulgor Castelfranco",
+                                "Fratticciola"
+                        ],
+                        [
+                                "Guazzino S.S.D.",
+                                "Pratovecchio Pol. A.S.D."
+                        ],
+                        [
+                                "Marino Mercato Subbiano",
+                                "Pieve al Toppo 06"
+                        ],
+                        [
+                                "Vaggio Piandiscò 1932",
+                                "Poppi"
+                        ]
+                ]
+        },
+        {
+                "g": 7,
+                "aD": "Dom 01 Novembre 2026",
+                "aT": "14:30",
+                "rD": "Dom 21 Febbraio 2027",
+                "rT": "15:00",
+                "m": [
+                        [
+                                "Arno Castiglioni Laterina",
+                                "Marino Mercato Subbiano"
+                        ],
+                        [
+                                "Fortis Arezzo",
+                                "Calcio Pestello"
+                        ],
+                        [
+                                "Fratticciola",
+                                "Vaggio Piandiscò 1932"
+                        ],
+                        [
+                                "M.C. Valdichiana Calcio",
+                                "Bucine"
+                        ],
+                        [
+                                "Pieve al Toppo 06",
+                                "Fulgor Castelfranco"
+                        ],
+                        [
+                                "Poppi",
+                                "Guazzino S.S.D."
+                        ],
+                        [
+                                "Pratovecchio Pol. A.S.D.",
+                                "Fratta S.Caterina"
+                        ],
+                        [
+                                "Rassina",
+                                "Arezzo Football Academy"
+                        ]
+                ]
+        },
+        {
+                "g": 8,
+                "aD": "Dom 08 Novembre 2026",
+                "aT": "14:30",
+                "rD": "Dom 28 Febbraio 2027",
+                "rT": "15:00",
+                "m": [
+                        [
+                                "Arezzo Football Academy",
+                                "Arno Castiglioni Laterina"
+                        ],
+                        [
+                                "Bucine",
+                                "Pieve al Toppo 06"
+                        ],
+                        [
+                                "Calcio Pestello",
+                                "Fulgor Castelfranco"
+                        ],
+                        [
+                                "Fratta S.Caterina",
+                                "Fortis Arezzo"
+                        ],
+                        [
+                                "Guazzino S.S.D.",
+                                "M.C. Valdichiana Calcio"
+                        ],
+                        [
+                                "Marino Mercato Subbiano",
+                                "Fratticciola"
+                        ],
+                        [
+                                "Poppi",
+                                "Pratovecchio Pol. A.S.D."
+                        ],
+                        [
+                                "Vaggio Piandiscò 1932",
+                                "Rassina"
+                        ]
+                ]
+        },
+        {
+                "g": 9,
+                "aD": "Dom 15 Novembre 2026",
+                "aT": "14:30",
+                "rD": "Dom 07 Marzo 2027",
+                "rT": "15:00",
+                "m": [
+                        [
+                                "Arno Castiglioni Laterina",
+                                "Bucine"
+                        ],
+                        [
+                                "Fortis Arezzo",
+                                "Arezzo Football Academy"
+                        ],
+                        [
+                                "Fratticciola",
+                                "Poppi"
+                        ],
+                        [
+                                "Fulgor Castelfranco",
+                                "Marino Mercato Subbiano"
+                        ],
+                        [
+                                "M.C. Valdichiana Calcio",
+                                "Fratta S.Caterina"
+                        ],
+                        [
+                                "Pieve al Toppo 06",
+                                "Calcio Pestello"
+                        ],
+                        [
+                                "Pratovecchio Pol. A.S.D.",
+                                "Vaggio Piandiscò 1932"
+                        ],
+                        [
+                                "Rassina",
+                                "Guazzino S.S.D."
+                        ]
+                ]
+        },
+        {
+                "g": 10,
+                "aD": "Dom 22 Novembre 2026",
+                "aT": "14:30",
+                "rD": "Dom 14 Marzo 2027",
+                "rT": "15:00",
+                "m": [
+                        [
+                                "Arezzo Football Academy",
+                                "Fulgor Castelfranco"
+                        ],
+                        [
+                                "Bucine",
+                                "Marino Mercato Subbiano"
+                        ],
+                        [
+                                "Calcio Pestello",
+                                "Fratticciola"
+                        ],
+                        [
+                                "Fratta S.Caterina",
+                                "Pieve al Toppo 06"
+                        ],
+                        [
+                                "Guazzino S.S.D.",
+                                "Arno Castiglioni Laterina"
+                        ],
+                        [
+                                "Poppi",
+                                "M.C. Valdichiana Calcio"
+                        ],
+                        [
+                                "Pratovecchio Pol. A.S.D.",
+                                "Rassina"
+                        ],
+                        [
+                                "Vaggio Piandiscò 1932",
+                                "Fortis Arezzo"
+                        ]
+                ]
+        },
+        {
+                "g": 11,
+                "aD": "Dom 29 Novembre 2026",
+                "aT": "14:30",
+                "rD": "Dom 04 Aprile 2027",
+                "rT": "15:30",
+                "m": [
+                        [
+                                "Arno Castiglioni Laterina",
+                                "Fratta S.Caterina"
+                        ],
+                        [
+                                "Fortis Arezzo",
+                                "Guazzino S.S.D."
+                        ],
+                        [
+                                "Fratticciola",
+                                "Pratovecchio Pol. A.S.D."
+                        ],
+                        [
+                                "Fulgor Castelfranco",
+                                "Bucine"
+                        ],
+                        [
+                                "M.C. Valdichiana Calcio",
+                                "Vaggio Piandiscò 1932"
+                        ],
+                        [
+                                "Marino Mercato Subbiano",
+                                "Calcio Pestello"
+                        ],
+                        [
+                                "Pieve al Toppo 06",
+                                "Arezzo Football Academy"
+                        ],
+                        [
+                                "Rassina",
+                                "Poppi"
+                        ]
+                ]
+        },
+        {
+                "g": 12,
+                "aD": "Dom 06 Dicembre 2026",
+                "aT": "14:30",
+                "rD": "Dom 11 Aprile 2027",
+                "rT": "15:30",
+                "m": [
+                        [
+                                "Arezzo Football Academy",
+                                "Calcio Pestello"
+                        ],
+                        [
+                                "Bucine",
+                                "Fratticciola"
+                        ],
+                        [
+                                "Fratta S.Caterina",
+                                "Marino Mercato Subbiano"
+                        ],
+                        [
+                                "Guazzino S.S.D.",
+                                "Fulgor Castelfranco"
+                        ],
+                        [
+                                "Poppi",
+                                "Arno Castiglioni Laterina"
+                        ],
+                        [
+                                "Pratovecchio Pol. A.S.D.",
+                                "Fortis Arezzo"
+                        ],
+                        [
+                                "Rassina",
+                                "M.C. Valdichiana Calcio"
+                        ],
+                        [
+                                "Vaggio Piandiscò 1932",
+                                "Pieve al Toppo 06"
+                        ]
+                ]
+        },
+        {
+                "g": 13,
+                "aD": "Dom 13 Dicembre 2026",
+                "aT": "14:30",
+                "rD": "Dom 18 Aprile 2027",
+                "rT": "16:00",
+                "m": [
+                        [
+                                "Arno Castiglioni Laterina",
+                                "Vaggio Piandiscò 1932"
+                        ],
+                        [
+                                "Calcio Pestello",
+                                "Bucine"
+                        ],
+                        [
+                                "Fortis Arezzo",
+                                "Poppi"
+                        ],
+                        [
+                                "Fratticciola",
+                                "Rassina"
+                        ],
+                        [
+                                "Fulgor Castelfranco",
+                                "Fratta S.Caterina"
+                        ],
+                        [
+                                "M.C. Valdichiana Calcio",
+                                "Pratovecchio Pol. A.S.D."
+                        ],
+                        [
+                                "Marino Mercato Subbiano",
+                                "Arezzo Football Academy"
+                        ],
+                        [
+                                "Pieve al Toppo 06",
+                                "Guazzino S.S.D."
+                        ]
+                ]
+        },
+        {
+                "g": 14,
+                "aD": "Dom 20 Dicembre 2026",
+                "aT": "14:30",
+                "rD": "Dom 25 Aprile 2027",
+                "rT": "16:00",
+                "m": [
+                        [
+                                "Arezzo Football Academy",
+                                "Fratticciola"
+                        ],
+                        [
+                                "Fratta S.Caterina",
+                                "Bucine"
+                        ],
+                        [
+                                "Guazzino S.S.D.",
+                                "Calcio Pestello"
+                        ],
+                        [
+                                "M.C. Valdichiana Calcio",
+                                "Fortis Arezzo"
+                        ],
+                        [
+                                "Poppi",
+                                "Fulgor Castelfranco"
+                        ],
+                        [
+                                "Pratovecchio Pol. A.S.D.",
+                                "Pieve al Toppo 06"
+                        ],
+                        [
+                                "Rassina",
+                                "Arno Castiglioni Laterina"
+                        ],
+                        [
+                                "Vaggio Piandiscò 1932",
+                                "Marino Mercato Subbiano"
+                        ]
+                ]
+        },
+        {
+                "g": 15,
+                "aD": "Dom 03 Gennaio 2027",
+                "aT": "14:30",
+                "rD": "Dom 02 Maggio 2027",
+                "rT": "16:00",
+                "m": [
+                        [
+                                "Arno Castiglioni Laterina",
+                                "Pratovecchio Pol. A.S.D."
+                        ],
+                        [
+                                "Bucine",
+                                "Arezzo Football Academy"
+                        ],
+                        [
+                                "Calcio Pestello",
+                                "Fratta S.Caterina"
+                        ],
+                        [
+                                "Fortis Arezzo",
+                                "Rassina"
+                        ],
+                        [
+                                "Fratticciola",
+                                "M.C. Valdichiana Calcio"
+                        ],
+                        [
+                                "Fulgor Castelfranco",
+                                "Vaggio Piandiscò 1932"
+                        ],
+                        [
+                                "Marino Mercato Subbiano",
+                                "Guazzino S.S.D."
+                        ],
+                        [
+                                "Pieve al Toppo 06",
+                                "Poppi"
+                        ]
+                ]
         }
+];
 
-        function closeCalendarModal() {
-            document.getElementById('fullCalendarModal').classList.add('hidden');
+        const terzaCategoriaFullCalendar = [
+        {
+                "g": 1,
+                "aD": "Dom 20 Settembre 2026",
+                "aT": "15:30",
+                "rD": "Dom 24 Gennaio 2027",
+                "rT": "15:00",
+                "m": [
+                        [
+                                "Colonna Indicatore",
+                                "Sangiustinese 2022"
+                        ],
+                        [
+                                "Faellese A.S.D.",
+                                "Badia a Roti Calcio"
+                        ],
+                        [
+                                "Lorese",
+                                "Terontola A.S.D."
+                        ],
+                        [
+                                "Pietraia A.S.D.",
+                                "Badia Agnano A.S.D."
+                        ],
+                        [
+                                "S.Marco La Sella",
+                                "Montecchio"
+                        ],
+                        [
+                                "San Leolino",
+                                "Atletico Valdambra",
+                                false,
+                                true,
+                                "Anticipo Sab 19/09"
+                        ],
+                        [
+                                "Tregozzano",
+                                "Monterchiese"
+                        ],
+                        [
+                                "Tuscar",
+                                "Monsigliolo A.S.D."
+                        ],
+                        [
+                                "Virtus Arezzo",
+                                "Pian Di Sco"
+                        ]
+                ]
+        },
+        {
+                "g": 2,
+                "aD": "Dom 27 Settembre 2026",
+                "aT": "15:30",
+                "rD": "Dom 31 Gennaio 2027",
+                "rT": "15:00",
+                "m": [
+                        [
+                                "Atletico Valdambra",
+                                "Faellese A.S.D.",
+                                false,
+                                false,
+                                "ore 16:00"
+                        ],
+                        [
+                                "Badia a Roti Calcio",
+                                "Pietraia A.S.D.",
+                                false,
+                                false,
+                                "ore 15:00"
+                        ],
+                        [
+                                "Badia Agnano A.S.D.",
+                                "Virtus Arezzo"
+                        ],
+                        [
+                                "Monsigliolo A.S.D.",
+                                "Lorese",
+                                false,
+                                false,
+                                "ore 16:00 (Posticipo orario C.U. 11)"
+                        ],
+                        [
+                                "Montecchio",
+                                "Colonna Indicatore",
+                                false,
+                                false,
+                                "ore 16:00 (Posticipo orario C.U. 11)"
+                        ],
+                        [
+                                "Monterchiese",
+                                "S.Marco La Sella",
+                                false,
+                                false,
+                                "ore 16:00"
+                        ],
+                        [
+                                "Pian Di Sco",
+                                "Tuscar"
+                        ],
+                        [
+                                "Sangiustinese 2022",
+                                "San Leolino",
+                                false,
+                                true,
+                                "Anticipo Sab 26/09 ore 15:30"
+                        ],
+                        [
+                                "Terontola A.S.D.",
+                                "Tregozzano"
+                        ]
+                ]
+        },
+        {
+                "g": 3,
+                "aD": "Dom 04 Ottobre 2026",
+                "aT": "15:30",
+                "rD": "Dom 07 Febbraio 2027",
+                "rT": "15:00",
+                "m": [
+                        [
+                                "Badia Agnano A.S.D.",
+                                "Pian Di Sco"
+                        ],
+                        [
+                                "Colonna Indicatore",
+                                "Atletico Valdambra"
+                        ],
+                        [
+                                "Faellese A.S.D.",
+                                "Pietraia A.S.D."
+                        ],
+                        [
+                                "Lorese",
+                                "Monterchiese"
+                        ],
+                        [
+                                "S.Marco La Sella",
+                                "Sangiustinese 2022"
+                        ],
+                        [
+                                "San Leolino",
+                                "Badia a Roti Calcio"
+                        ],
+                        [
+                                "Tregozzano",
+                                "Montecchio"
+                        ],
+                        [
+                                "Tuscar",
+                                "Terontola A.S.D."
+                        ],
+                        [
+                                "Virtus Arezzo",
+                                "Monsigliolo A.S.D."
+                        ]
+                ]
+        },
+        {
+                "g": 4,
+                "aD": "Dom 11 Ottobre 2026",
+                "aT": "15:30",
+                "rD": "Dom 14 Febbraio 2027",
+                "rT": "15:00",
+                "m": [
+                        [
+                                "Atletico Valdambra",
+                                "Tregozzano"
+                        ],
+                        [
+                                "Badia a Roti Calcio",
+                                "S.Marco La Sella"
+                        ],
+                        [
+                                "Faellese A.S.D.",
+                                "San Leolino"
+                        ],
+                        [
+                                "Monsigliolo A.S.D.",
+                                "Badia Agnano A.S.D."
+                        ],
+                        [
+                                "Montecchio",
+                                "Tuscar"
+                        ],
+                        [
+                                "Monterchiese",
+                                "Virtus Arezzo"
+                        ],
+                        [
+                                "Pietraia A.S.D.",
+                                "Colonna Indicatore"
+                        ],
+                        [
+                                "Sangiustinese 2022",
+                                "Lorese"
+                        ],
+                        [
+                                "Terontola A.S.D.",
+                                "Pian Di Sco"
+                        ]
+                ]
+        },
+        {
+                "g": 5,
+                "aD": "Dom 18 Ottobre 2026",
+                "aT": "15:30",
+                "rD": "Dom 21 Febbraio 2027",
+                "rT": "15:00",
+                "m": [
+                        [
+                                "Badia Agnano A.S.D.",
+                                "Faellese A.S.D."
+                        ],
+                        [
+                                "Colonna Indicatore",
+                                "Badia a Roti Calcio"
+                        ],
+                        [
+                                "Lorese",
+                                "Montecchio"
+                        ],
+                        [
+                                "Pian Di Sco",
+                                "Monsigliolo A.S.D."
+                        ],
+                        [
+                                "S.Marco La Sella",
+                                "Atletico Valdambra"
+                        ],
+                        [
+                                "San Leolino",
+                                "Pietraia A.S.D."
+                        ],
+                        [
+                                "Tregozzano",
+                                "Sangiustinese 2022"
+                        ],
+                        [
+                                "Tuscar",
+                                "Monterchiese"
+                        ],
+                        [
+                                "Virtus Arezzo",
+                                "Terontola A.S.D."
+                        ]
+                ]
+        },
+        {
+                "g": 6,
+                "aD": "Dom 25 Ottobre 2026",
+                "aT": "14:30",
+                "rD": "Dom 28 Febbraio 2027",
+                "rT": "15:00",
+                "m": [
+                        [
+                                "Atletico Valdambra",
+                                "Tuscar"
+                        ],
+                        [
+                                "Badia a Roti Calcio",
+                                "Lorese"
+                        ],
+                        [
+                                "Faellese A.S.D.",
+                                "S.Marco La Sella"
+                        ],
+                        [
+                                "Montecchio",
+                                "Pian Di Sco"
+                        ],
+                        [
+                                "Monterchiese",
+                                "Monsigliolo A.S.D."
+                        ],
+                        [
+                                "Pietraia A.S.D.",
+                                "Tregozzano"
+                        ],
+                        [
+                                "San Leolino",
+                                "Colonna Indicatore"
+                        ],
+                        [
+                                "Sangiustinese 2022",
+                                "Virtus Arezzo"
+                        ],
+                        [
+                                "Terontola A.S.D.",
+                                "Badia Agnano A.S.D."
+                        ]
+                ]
+        },
+        {
+                "g": 7,
+                "aD": "Dom 01 Novembre 2026",
+                "aT": "14:30",
+                "rD": "Dom 07 Marzo 2027",
+                "rT": "15:00",
+                "m": [
+                        [
+                                "Badia Agnano A.S.D.",
+                                "San Leolino"
+                        ],
+                        [
+                                "Colonna Indicatore",
+                                "Faellese A.S.D."
+                        ],
+                        [
+                                "Lorese",
+                                "Atletico Valdambra"
+                        ],
+                        [
+                                "Monsigliolo A.S.D.",
+                                "Terontola A.S.D."
+                        ],
+                        [
+                                "Pian Di Sco",
+                                "Monterchiese"
+                        ],
+                        [
+                                "S.Marco La Sella",
+                                "Pietraia A.S.D."
+                        ],
+                        [
+                                "Tregozzano",
+                                "Badia a Roti Calcio"
+                        ],
+                        [
+                                "Tuscar",
+                                "Sangiustinese 2022"
+                        ],
+                        [
+                                "Virtus Arezzo",
+                                "Montecchio"
+                        ]
+                ]
+        },
+        {
+                "g": 8,
+                "aD": "Dom 08 Novembre 2026",
+                "aT": "14:30",
+                "rD": "Dom 14 Marzo 2027",
+                "rT": "15:00",
+                "m": [
+                        [
+                                "Atletico Valdambra",
+                                "Pian Di Sco"
+                        ],
+                        [
+                                "Badia a Roti Calcio",
+                                "Virtus Arezzo"
+                        ],
+                        [
+                                "Colonna Indicatore",
+                                "S.Marco La Sella"
+                        ],
+                        [
+                                "Faellese A.S.D.",
+                                "Lorese"
+                        ],
+                        [
+                                "Montecchio",
+                                "Terontola A.S.D."
+                        ],
+                        [
+                                "Monterchiese",
+                                "Badia Agnano A.S.D."
+                        ],
+                        [
+                                "Pietraia A.S.D.",
+                                "Tuscar"
+                        ],
+                        [
+                                "San Leolino",
+                                "Tregozzano"
+                        ],
+                        [
+                                "Sangiustinese 2022",
+                                "Monsigliolo A.S.D."
+                        ]
+                ]
+        },
+        {
+                "g": 9,
+                "aD": "Dom 15 Novembre 2026",
+                "aT": "14:30",
+                "rD": "Dom 21 Marzo 2027",
+                "rT": "15:00",
+                "m": [
+                        [
+                                "Badia Agnano A.S.D.",
+                                "Colonna Indicatore"
+                        ],
+                        [
+                                "Lorese",
+                                "Pietraia A.S.D."
+                        ],
+                        [
+                                "Monsigliolo A.S.D.",
+                                "Montecchio",
+                                true
+                        ],
+                        [
+                                "Pian Di Sco",
+                                "Sangiustinese 2022"
+                        ],
+                        [
+                                "S.Marco La Sella",
+                                "San Leolino"
+                        ],
+                        [
+                                "Terontola A.S.D.",
+                                "Monterchiese"
+                        ],
+                        [
+                                "Tregozzano",
+                                "Faellese A.S.D."
+                        ],
+                        [
+                                "Tuscar",
+                                "Badia a Roti Calcio"
+                        ],
+                        [
+                                "Virtus Arezzo",
+                                "Atletico Valdambra"
+                        ]
+                ]
+        },
+        {
+                "g": 10,
+                "aD": "Dom 22 Novembre 2026",
+                "aT": "14:30",
+                "rD": "Dom 04 Aprile 2027",
+                "rT": "15:30",
+                "m": [
+                        [
+                                "Atletico Valdambra",
+                                "Terontola A.S.D."
+                        ],
+                        [
+                                "Badia a Roti Calcio",
+                                "Monsigliolo A.S.D."
+                        ],
+                        [
+                                "Colonna Indicatore",
+                                "Lorese"
+                        ],
+                        [
+                                "Faellese A.S.D.",
+                                "Virtus Arezzo"
+                        ],
+                        [
+                                "Montecchio",
+                                "Badia Agnano A.S.D."
+                        ],
+                        [
+                                "Pietraia A.S.D.",
+                                "Pian Di Sco"
+                        ],
+                        [
+                                "S.Marco La Sella",
+                                "Tregozzano"
+                        ],
+                        [
+                                "San Leolino",
+                                "Tuscar"
+                        ],
+                        [
+                                "Sangiustinese 2022",
+                                "Monterchiese"
+                        ]
+                ]
+        },
+        {
+                "g": 11,
+                "aD": "Dom 29 Novembre 2026",
+                "aT": "14:30",
+                "rD": "Dom 11 Aprile 2027",
+                "rT": "15:30",
+                "m": [
+                        [
+                                "Badia Agnano A.S.D.",
+                                "S.Marco La Sella"
+                        ],
+                        [
+                                "Lorese",
+                                "San Leolino"
+                        ],
+                        [
+                                "Monsigliolo A.S.D.",
+                                "Atletico Valdambra"
+                        ],
+                        [
+                                "Monterchiese",
+                                "Montecchio"
+                        ],
+                        [
+                                "Pian Di Sco",
+                                "Badia a Roti Calcio"
+                        ],
+                        [
+                                "Terontola A.S.D.",
+                                "Sangiustinese 2022"
+                        ],
+                        [
+                                "Tregozzano",
+                                "Colonna Indicatore"
+                        ],
+                        [
+                                "Tuscar",
+                                "Faellese A.S.D."
+                        ],
+                        [
+                                "Virtus Arezzo",
+                                "Pietraia A.S.D."
+                        ]
+                ]
+        },
+        {
+                "g": 12,
+                "aD": "Dom 06 Dicembre 2026",
+                "aT": "14:30",
+                "rD": "Dom 18 Aprile 2027",
+                "rT": "16:00",
+                "m": [
+                        [
+                                "Atletico Valdambra",
+                                "Montecchio"
+                        ],
+                        [
+                                "Badia a Roti Calcio",
+                                "Monterchiese"
+                        ],
+                        [
+                                "Colonna Indicatore",
+                                "Virtus Arezzo"
+                        ],
+                        [
+                                "Faellese A.S.D.",
+                                "Monsigliolo A.S.D."
+                        ],
+                        [
+                                "Pietraia A.S.D.",
+                                "Terontola A.S.D."
+                        ],
+                        [
+                                "S.Marco La Sella",
+                                "Tuscar"
+                        ],
+                        [
+                                "San Leolino",
+                                "Pian Di Sco"
+                        ],
+                        [
+                                "Sangiustinese 2022",
+                                "Badia Agnano A.S.D."
+                        ],
+                        [
+                                "Tregozzano",
+                                "Lorese"
+                        ]
+                ]
+        },
+        {
+                "g": 13,
+                "aD": "Dom 13 Dicembre 2026",
+                "aT": "14:30",
+                "rD": "Dom 25 Aprile 2027",
+                "rT": "16:00",
+                "m": [
+                        [
+                                "Badia Agnano A.S.D.",
+                                "Tregozzano"
+                        ],
+                        [
+                                "Lorese",
+                                "S.Marco La Sella"
+                        ],
+                        [
+                                "Monsigliolo A.S.D.",
+                                "Pietraia A.S.D."
+                        ],
+                        [
+                                "Montecchio",
+                                "Sangiustinese 2022"
+                        ],
+                        [
+                                "Monterchiese",
+                                "Atletico Valdambra"
+                        ],
+                        [
+                                "Pian Di Sco",
+                                "Faellese A.S.D."
+                        ],
+                        [
+                                "Terontola A.S.D.",
+                                "Badia a Roti Calcio"
+                        ],
+                        [
+                                "Tuscar",
+                                "Colonna Indicatore"
+                        ],
+                        [
+                                "Virtus Arezzo",
+                                "San Leolino"
+                        ]
+                ]
+        },
+        {
+                "g": 14,
+                "aD": "Dom 20 Dicembre 2026",
+                "aT": "14:30",
+                "rD": "Dom 02 Maggio 2027",
+                "rT": "16:00",
+                "m": [
+                        [
+                                "Atletico Valdambra",
+                                "Badia Agnano A.S.D."
+                        ],
+                        [
+                                "Badia a Roti Calcio",
+                                "Sangiustinese 2022"
+                        ],
+                        [
+                                "Colonna Indicatore",
+                                "Monsigliolo A.S.D."
+                        ],
+                        [
+                                "Faellese A.S.D.",
+                                "Monterchiese"
+                        ],
+                        [
+                                "Lorese",
+                                "Tuscar"
+                        ],
+                        [
+                                "Pietraia A.S.D.",
+                                "Montecchio"
+                        ],
+                        [
+                                "S.Marco La Sella",
+                                "Pian Di Sco"
+                        ],
+                        [
+                                "San Leolino",
+                                "Terontola A.S.D."
+                        ],
+                        [
+                                "Tregozzano",
+                                "Virtus Arezzo"
+                        ]
+                ]
+        },
+        {
+                "g": 15,
+                "aD": "Dom 03 Gennaio 2027",
+                "aT": "14:30",
+                "rD": "Dom 09 Maggio 2027",
+                "rT": "16:00",
+                "m": [
+                        [
+                                "Badia Agnano A.S.D.",
+                                "Lorese"
+                        ],
+                        [
+                                "Monsigliolo A.S.D.",
+                                "San Leolino"
+                        ],
+                        [
+                                "Montecchio",
+                                "Badia a Roti Calcio"
+                        ],
+                        [
+                                "Monterchiese",
+                                "Pietraia A.S.D."
+                        ],
+                        [
+                                "Pian Di Sco",
+                                "Colonna Indicatore"
+                        ],
+                        [
+                                "Sangiustinese 2022",
+                                "Atletico Valdambra"
+                        ],
+                        [
+                                "Terontola A.S.D.",
+                                "Faellese A.S.D."
+                        ],
+                        [
+                                "Tuscar",
+                                "Tregozzano"
+                        ],
+                        [
+                                "Virtus Arezzo",
+                                "S.Marco La Sella"
+                        ]
+                ]
+        },
+        {
+                "g": 16,
+                "aD": "Dom 10 Gennaio 2027",
+                "aT": "14:30",
+                "rD": "Dom 16 Maggio 2027",
+                "rT": "16:00",
+                "m": [
+                        [
+                                "Badia a Roti Calcio",
+                                "Badia Agnano A.S.D."
+                        ],
+                        [
+                                "Colonna Indicatore",
+                                "Monterchiese"
+                        ],
+                        [
+                                "Faellese A.S.D.",
+                                "Sangiustinese 2022"
+                        ],
+                        [
+                                "Lorese",
+                                "Pian Di Sco"
+                        ],
+                        [
+                                "Pietraia A.S.D.",
+                                "Atletico Valdambra"
+                        ],
+                        [
+                                "S.Marco La Sella",
+                                "Terontola A.S.D."
+                        ],
+                        [
+                                "San Leolino",
+                                "Montecchio"
+                        ],
+                        [
+                                "Tregozzano",
+                                "Monsigliolo A.S.D."
+                        ],
+                        [
+                                "Tuscar",
+                                "Virtus Arezzo"
+                        ]
+                ]
+        },
+        {
+                "g": 17,
+                "aD": "Dom 17 Gennaio 2027",
+                "aT": "15:00",
+                "rD": "Dom 23 Maggio 2027",
+                "rT": "16:00",
+                "m": [
+                        [
+                                "Atletico Valdambra",
+                                "Badia a Roti Calcio"
+                        ],
+                        [
+                                "Badia Agnano A.S.D.",
+                                "Tuscar"
+                        ],
+                        [
+                                "Monsigliolo A.S.D.",
+                                "S.Marco La Sella"
+                        ],
+                        [
+                                "Montecchio",
+                                "Faellese A.S.D."
+                        ],
+                        [
+                                "Monterchiese",
+                                "San Leolino"
+                        ],
+                        [
+                                "Pian Di Sco",
+                                "Tregozzano"
+                        ],
+                        [
+                                "Sangiustinese 2022",
+                                "Pietraia A.S.D."
+                        ],
+                        [
+                                "Terontola A.S.D.",
+                                "Colonna Indicatore"
+                        ],
+                        [
+                                "Virtus Arezzo",
+                                "Lorese"
+                        ]
+                ]
         }
+];
 
-        function renderModalPills() {
-            const container = document.getElementById('giornatePillsContainer');
-            if (!container) return;
-            container.innerHTML = '';
-            for (let i = 1; i <= 15; i++) {
-                const btn = document.createElement('button');
-                btn.className = `px-3 py-1.5 rounded-lg font-bold shrink-0 transition text-xs ${i === selectedModalGiornata ? 'bg-amber-500 text-slate-950 shadow' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}`;
-                btn.innerText = `${i}ª G`;
-                btn.onclick = () => showGiornata(i);
-                container.appendChild(btn);
+        // ==========================================
+        // GESTIONE MODAL MULTI-CALENDARIO COMPLETO
+        // ==========================================
+// modal_logic_part1.js
+let currentModalCategory = 'promozione'; // 'promozione' | 'seconda' | 'terza'
+let selectedModalGiornata = 1;
+
+function openCalendarModal(category = 'promozione') {
+    currentModalCategory = category;
+    selectedModalGiornata = 1;
+    const modal = document.getElementById('fullCalendarModal');
+    if (modal) modal.classList.remove('hidden');
+    updateModalView();
+}
+
+function closeCalendarModal() {
+    const modal = document.getElementById('fullCalendarModal');
+    if (modal) modal.classList.add('hidden');
+}
+
+function switchModalCategory(category) {
+    currentModalCategory = category;
+    selectedModalGiornata = 1;
+    updateModalView();
+}
+
+function updateModalView() {
+    const tabs = [
+        { id: 'modalTabPromozione', key: 'promozione' },
+        { id: 'modalTabSeconda', key: 'seconda' },
+        { id: 'modalTabTerza', key: 'terza' }
+    ];
+
+    tabs.forEach(t => {
+        const elem = document.getElementById(t.id);
+        if (elem) {
+            if (t.key === currentModalCategory) {
+                elem.className = "px-3 py-1.5 rounded-lg font-bold shrink-0 transition text-xs bg-amber-500 text-slate-950 shadow";
+            } else {
+                elem.className = "px-3 py-1.5 rounded-lg font-semibold shrink-0 transition text-xs bg-slate-800 text-slate-300 hover:bg-slate-700";
             }
         }
+    });
 
-        function showGiornata(num) {
-            selectedModalGiornata = num;
-            renderModalPills();
-            const gData = secondaCategoriaFullCalendar.find(g => g.g === num);
-            if (!gData) return;
+    const titleElem = document.getElementById('modalCategoryTitle');
+    const subElem = document.getElementById('modalCategorySubtitle');
+    const legendElem = document.getElementById('modalLegendText');
 
-            const banner = document.getElementById('giornataInfoBanner');
-            banner.innerHTML = `
-                <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700 flex items-center justify-between">
-                    <div>
-                        <span class="text-[10px] uppercase font-bold text-amber-400 block"><i class="fa-solid fa-play text-amber-500 mr-1"></i>Andata (${num}ª Giornata)</span>
-                        <span class="text-white font-semibold">${gData.aD}</span>
-                    </div>
-                    <span class="bg-slate-900 px-2.5 py-1 rounded text-amber-300 font-mono text-xs border border-slate-700">ore ${gData.aT}</span>
+    if (currentModalCategory === 'promozione') {
+        if (titleElem) titleElem.innerText = "Calendario Ufficiale Promozione (Girone C)";
+        if (subElem) subElem.innerText = "Cortona Camucia • Tutte le 15 Giornate (Andata e Ritorno)";
+        if (legendElem) legendElem.innerHTML = '<i class="fa-solid fa-futbol text-amber-500 mr-1"></i>Cortona Camucia evidenziata in oro';
+    } else if (currentModalCategory === 'seconda') {
+        if (titleElem) titleElem.innerText = "Calendario Ufficiale Seconda Categoria (Girone G)";
+        if (subElem) subElem.innerText = "Fratta S. Caterina e Fratticciola • Tutte le 15 Giornate (Andata e Ritorno)";
+        if (legendElem) legendElem.innerHTML = '<i class="fa-solid fa-fire text-amber-500 mr-1"></i>Fratta S. Caterina e Fratticciola evidenziate • Derby in rosso/oro';
+    } else {
+        if (titleElem) titleElem.innerText = "Calendario Ufficiale Terza Categoria (Girone A Arezzo)";
+        if (subElem) subElem.innerText = "Monsigliolo e Montecchio • Tutte le 17 Giornate (Andata e Ritorno)";
+        if (legendElem) legendElem.innerHTML = '<i class="fa-solid fa-fire text-amber-500 mr-1"></i>Monsigliolo e Montecchio evidenziati • Derby del Comune in rosso/oro';
+    }
+
+    renderModalPills();
+    showGiornata(selectedModalGiornata);
+}
+
+function getActiveCalendarData() {
+    if (currentModalCategory === 'promozione') return { data: promozioneFullCalendar, total: 15, catName: "Promozione Gir. C" };
+    if (currentModalCategory === 'seconda') return { data: secondaCategoriaFullCalendar, total: 15, catName: "2ª Categoria" };
+    return { data: terzaCategoriaFullCalendar, total: 17, catName: "3ª Categoria Arezzo" };
+}
+
+function renderModalPills() {
+    const container = document.getElementById('giornatePillsContainer');
+    if (!container) return;
+    container.innerHTML = '';
+
+    const { total } = getActiveCalendarData();
+
+    for (let i = 1; i <= total; i++) {
+        const btn = document.createElement('button');
+        btn.className = 'px-3 py-1.5 rounded-lg font-bold shrink-0 transition text-xs ' + (i === selectedModalGiornata ? 'bg-amber-500 text-slate-950 shadow' : 'bg-slate-800 text-slate-300 hover:bg-slate-700');
+        btn.innerText = i + 'ª G';
+        btn.onclick = () => showGiornata(i);
+        container.appendChild(btn);
+    }
+}
+
+
+// modal_logic_part2.js
+function showGiornata(num) {
+    selectedModalGiornata = num;
+    renderModalPills();
+
+    const { data, total, catName } = getActiveCalendarData();
+    const gData = data.find(g => g.g === num);
+    if (!gData) return;
+
+    const banner = document.getElementById('giornataInfoBanner');
+    if (banner) {
+        banner.innerHTML = `
+            <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700 flex items-center justify-between">
+                <div>
+                    <span class="text-[10px] uppercase font-bold text-amber-400 block"><i class="fa-solid fa-play text-amber-500 mr-1"></i>Andata (${num}ª G)</span>
+                    <span class="text-white font-semibold">${gData.aD}</span>
                 </div>
-                <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700 flex items-center justify-between">
-                    <div>
-                        <span class="text-[10px] uppercase font-bold text-amber-400 block"><i class="fa-solid fa-rotate-left text-amber-500 mr-1"></i>Ritorno (${num + 15}ª Giornata)</span>
-                        <span class="text-white font-semibold">${gData.rD}</span>
-                    </div>
-                    <span class="bg-slate-900 px-2.5 py-1 rounded text-amber-300 font-mono text-xs border border-slate-700">ore ${gData.rT}</span>
+                <span class="bg-slate-900 px-2.5 py-1 rounded text-amber-300 font-mono text-xs border border-slate-700">ore ${gData.aT}</span>
+            </div>
+            <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700 flex items-center justify-between">
+                <div>
+                    <span class="text-[10px] uppercase font-bold text-amber-400 block"><i class="fa-solid fa-rotate-left text-amber-500 mr-1"></i>Ritorno (${num + total}ª G)</span>
+                    <span class="text-white font-semibold">${gData.rD}</span>
                 </div>
-            `;
+                <span class="bg-slate-900 px-2.5 py-1 rounded text-amber-300 font-mono text-xs border border-slate-700">ore ${gData.rT}</span>
+            </div>`;
+    }
 
-            const list = document.getElementById('giornataMatchesList');
-            list.innerHTML = '';
-            gData.m.forEach(([h, a, isDerby]) => {
-                const isCortona = h.includes('Fratta') || h.includes('Fratticciola') || a.includes('Fratta') || a.includes('Fratticciola');
-                const card = document.createElement('div');
+    const list = document.getElementById('giornataMatchesList');
+    if (!list) return;
+    list.innerHTML = '';
 
-                if (isDerby) {
-                    card.className = 'derby-card rounded-xl p-3 border-2 border-amber-500 text-slate-950 flex flex-col justify-between shadow';
-                    card.innerHTML = `
-                        <div class="flex items-center justify-between text-[10px] font-extrabold uppercase mb-1.5 text-amber-900">
-                            <span class="bg-red-600 text-white px-2 py-0.5 rounded-full"><i class="fa-solid fa-fire mr-1"></i>DERBY DEL COMUNE</span>
-                            <span>Andata ore ${gData.aT}</span>
-                        </div>
-                        <div class="flex items-center justify-between font-black text-sm">
-                            <span class="w-5/12 truncate text-right text-amber-950">${h}</span>
-                            <span class="text-red-600 text-xs px-2">VS</span>
-                            <span class="w-5/12 truncate text-left text-amber-950">${a}</span>
-                        </div>
-                    `;
-                } else if (isCortona) {
-                    card.className = 'bg-amber-500/10 border border-amber-500/40 rounded-xl p-3 text-slate-100 flex flex-col justify-between';
-                    card.innerHTML = `
-                        <div class="flex items-center justify-between text-[10px] font-semibold text-amber-400 mb-1.5">
-                            <span class="bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30">Squadra Cortonese</span>
-                            <span class="text-slate-400">Gara di Campionato</span>
-                        </div>
-                        <div class="flex items-center justify-between font-bold text-xs sm:text-sm">
-                            <span class="w-5/12 truncate text-right ${h.includes('Fratta') || h.includes('Fratticciola') ? 'text-amber-400 font-extrabold' : 'text-slate-200'}">${h}</span>
-                            <span class="text-slate-500 text-xs px-1.5">vs</span>
-                            <span class="w-5/12 truncate text-left ${a.includes('Fratta') || a.includes('Fratticciola') ? 'text-amber-400 font-extrabold' : 'text-slate-200'}">${a}</span>
-                        </div>
-                    `;
-                } else {
-                    card.className = 'bg-slate-800/60 border border-slate-700/80 rounded-xl p-3 text-slate-200 flex flex-col justify-between';
-                    card.innerHTML = `
-                        <div class="text-[10px] text-slate-500 mb-1 font-mono">2ª Categoria</div>
-                        <div class="flex items-center justify-between text-xs sm:text-sm">
-                            <span class="w-5/12 truncate text-right text-slate-300">${h}</span>
-                            <span class="text-slate-600 text-xs px-1">vs</span>
-                            <span class="w-5/12 truncate text-left text-slate-300">${a}</span>
-                        </div>
-                    `;
-                }
-                list.appendChild(card);
-            });
+    gData.m.forEach(entry => {
+        const [h, a] = entry;
+        let isDerby = entry[2] === true;
+        const note = entry[4] || '';
+
+        const checkCortona = name => /Cortona|Fratta|Fratticciola|Monsigliolo|Montecchio/.test(name);
+        const hCortona = checkCortona(h);
+        const aCortona = checkCortona(a);
+        const isCortona = hCortona || aCortona;
+        if (hCortona && aCortona) isDerby = true;
+
+        const card = document.createElement('div');
+        const badgeNote = note ? `<span class="bg-red-600 text-white px-2 py-0.5 rounded text-[9px] font-extrabold shrink-0 shadow animate-pulse">${note}</span>` : '';
+
+        if (isDerby) {
+            card.className = 'derby-card rounded-xl p-3 border-2 border-amber-500 text-slate-950 flex flex-col justify-between shadow';
+            card.innerHTML = `
+                <div class="flex items-center justify-between text-[10px] font-extrabold uppercase mb-1.5 text-amber-900">
+                    <span class="bg-red-600 text-white px-2 py-0.5 rounded-full flex items-center gap-1"><i class="fa-solid fa-fire text-yellow-200"></i>DERBY DEL COMUNE</span>
+                    <span>${note || ('Andata ore ' + gData.aT)}</span>
+                </div>
+                <div class="flex items-center justify-between font-black text-sm">
+                    <span class="w-5/12 truncate text-right text-amber-950">${h}</span>
+                    <span class="text-red-600 text-xs px-2 font-black">VS</span>
+                    <span class="w-5/12 truncate text-left text-amber-950">${a}</span>
+                </div>`;
+        } else if (isCortona) {
+            card.className = 'bg-amber-500/10 border border-amber-500/40 rounded-xl p-3 text-slate-100 flex flex-col justify-between';
+            card.innerHTML = `
+                <div class="flex items-center justify-between text-[10px] font-semibold text-amber-400 mb-1.5">
+                    <div class="flex items-center gap-1">
+                        <span class="bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30">Squadra Cortonese</span>
+                        ${badgeNote}
+                    </div>
+                    <span class="text-slate-400 font-mono">${note || ('ore ' + gData.aT)}</span>
+                </div>
+                <div class="flex items-center justify-between font-bold text-xs sm:text-sm">
+                    <span class="w-5/12 truncate text-right ${hCortona ? 'text-amber-400 font-extrabold' : 'text-slate-200'}">${h}</span>
+                    <span class="text-slate-500 text-xs px-1.5">vs</span>
+                    <span class="w-5/12 truncate text-left ${aCortona ? 'text-amber-400 font-extrabold' : 'text-slate-200'}">${a}</span>
+                </div>`;
+        } else {
+            card.className = 'bg-slate-800/60 border border-slate-700/80 rounded-xl p-3 text-slate-200 flex flex-col justify-between';
+            card.innerHTML = `
+                <div class="flex items-center justify-between text-[10px] text-slate-500 mb-1 font-mono">
+                    <span>${catName}</span>
+                    ${badgeNote || `<span>ore ${gData.aT}</span>`}
+                </div>
+                <div class="flex items-center justify-between text-xs sm:text-sm">
+                    <span class="w-5/12 truncate text-right text-slate-300">${h}</span>
+                    <span class="text-slate-600 text-xs px-1">vs</span>
+                    <span class="w-5/12 truncate text-left text-slate-300">${a}</span>
+                </div>`;
         }
+        list.appendChild(card);
+    });
+}
 
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeCalendarModal();
-        });
-        document.getElementById('fullCalendarModal')?.addEventListener('click', (e) => {
-            if (e.target.id === 'fullCalendarModal') closeCalendarModal();
-        });
+window.addEventListener('keydown', e => { if (e.key === 'Escape') closeCalendarModal(); });
+document.getElementById('fullCalendarModal')?.addEventListener('click', e => {
+    if (e.target.id === 'fullCalendarModal') closeCalendarModal();
+});
 
-        // Inizializzazione
-        updateCounters();
-        renderMatches();
+updateCounters();
+renderMatches();
+
     </script>
 </body>
 </html>
