@@ -38,7 +38,18 @@ const requiredStrings = [
     'giornataInfoBanner',
     'giornataMatchesList',
     'matchesContainer',
-    'countAll'
+    'countAll',
+    'countCortona',
+    'countFratta',
+    'countFratticciola',
+    'countMonsigliolo',
+    'countMontecchio',
+    "filterTeam('all', this)",
+    "filterTeam('Cortona Camucia', this)",
+    "filterTeam('Fratta Santa Caterina', this)",
+    "filterTeam('Fratticciola', this)",
+    "filterTeam('Monsigliolo', this)",
+    "filterTeam('Montecchio', this)"
 ];
 
 requiredStrings.forEach(s => {
@@ -59,20 +70,24 @@ if (!scriptMatch) {
 const scriptCode = scriptMatch[1];
 
 // Mock browser environment for evaluation
-const mockElem = () => ({
+const innerTextStore = {};
+let appendedCards = 0;
+
+const mockElem = (id = '') => ({
     classList: { add: () => {}, remove: () => {}, toggle: () => {} },
     addEventListener: () => {},
-    appendChild: () => {},
-    innerText: '',
+    appendChild: () => { appendedCards++; },
+    get innerText() { return innerTextStore[id] || ''; },
+    set innerText(val) { innerTextStore[id] = val; },
     innerHTML: '',
-    value: ''
+    value: 'all'
 });
 
 const sandbox = {
     document: {
-        getElementById: () => mockElem(),
+        getElementById: (id) => mockElem(id),
         querySelectorAll: () => [],
-        createElement: () => mockElem()
+        createElement: () => mockElem('created')
     },
     window: {
         addEventListener: () => {}
@@ -87,12 +102,52 @@ try {
         globalThis.__val_prom = typeof promozioneFullCalendar !== 'undefined' ? promozioneFullCalendar : null;
         globalThis.__val_sec = typeof secondaCategoriaFullCalendar !== 'undefined' ? secondaCategoriaFullCalendar : null;
         globalThis.__val_ter = typeof terzaCategoriaFullCalendar !== 'undefined' ? terzaCategoriaFullCalendar : null;
+        globalThis.__val_filterTeam = typeof filterTeam !== 'undefined' ? filterTeam : null;
+        globalThis.__val_toggleDerbyOnly = typeof toggleDerbyOnly !== 'undefined' ? toggleDerbyOnly : null;
+        globalThis.__val_resetAllFilters = typeof resetAllFilters !== 'undefined' ? resetAllFilters : null;
     `, sandbox);
     console.log("✓ Script evaluated with zero syntax or runtime errors.");
 } catch (err) {
     console.error("FAIL: Error evaluating script:", err);
     process.exit(1);
 }
+
+// Check team filter UI counters
+if (innerTextStore['countAll'] !== 79) {
+    console.error(`FAIL: countAll expected 79, got ${innerTextStore['countAll']}`);
+    process.exit(1);
+}
+if (innerTextStore['countCortona'] !== 15 || innerTextStore['countFratta'] !== 15 || innerTextStore['countFratticciola'] !== 15 ||
+    innerTextStore['countMonsigliolo'] !== 17 || innerTextStore['countMontecchio'] !== 17) {
+    console.error("FAIL: Team counters incorrect:", innerTextStore);
+    process.exit(1);
+}
+console.log("✓ Team filter UI badges initialized correctly:", innerTextStore);
+
+// Test filterTeam functionality
+const dummyBtn = { classList: { add: () => {}, remove: () => {} } };
+appendedCards = 0;
+sandbox.__val_filterTeam('Cortona Camucia', dummyBtn);
+if (appendedCards !== 15 || innerTextStore['visibleCount'] !== 15) {
+    console.error(`FAIL: filterTeam('Cortona Camucia') rendered ${appendedCards} cards, expected 15`);
+    process.exit(1);
+}
+
+appendedCards = 0;
+sandbox.__val_filterTeam('Montecchio', dummyBtn);
+if (appendedCards !== 17 || innerTextStore['visibleCount'] !== 17) {
+    console.error(`FAIL: filterTeam('Montecchio') rendered ${appendedCards} cards, expected 17`);
+    process.exit(1);
+}
+
+// Reset filters
+appendedCards = 0;
+sandbox.__val_resetAllFilters();
+if (appendedCards !== 79 || innerTextStore['visibleCount'] !== 79) {
+    console.error(`FAIL: resetAllFilters() rendered ${appendedCards} cards, expected 79`);
+    process.exit(1);
+}
+console.log("✓ Interactive team filtering and reset tested successfully.");
 
 // Validate matches array
 const matches = sandbox.__val_matches;

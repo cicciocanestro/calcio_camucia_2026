@@ -68,6 +68,30 @@
             </div>
         </div>
 
+        <!-- Barra Filtri per Squadra (Touch & Scroll Orizzontale su Mobile) -->
+        <div class="mb-4">
+            <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 text-xs whitespace-nowrap">
+                <button class="filter-team-btn active px-3.5 py-2 rounded-lg font-bold bg-amber-500 text-slate-950 transition shrink-0 shadow" onclick="filterTeam('all', this)">
+                    Tutte (<span id="countAll">0</span>)
+                </button>
+                <button class="filter-team-btn px-3.5 py-2 rounded-lg font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition shrink-0" onclick="filterTeam('Cortona Camucia', this)">
+                    Cortona Camucia (<span id="countCortona">0</span>)
+                </button>
+                <button class="filter-team-btn px-3.5 py-2 rounded-lg font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition shrink-0" onclick="filterTeam('Fratta Santa Caterina', this)">
+                    Fratta (<span id="countFratta">0</span>)
+                </button>
+                <button class="filter-team-btn px-3.5 py-2 rounded-lg font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition shrink-0" onclick="filterTeam('Fratticciola', this)">
+                    Fratticciola (<span id="countFratticciola">0</span>)
+                </button>
+                <button class="filter-team-btn px-3.5 py-2 rounded-lg font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition shrink-0" onclick="filterTeam('Monsigliolo', this)">
+                    Monsigliolo (<span id="countMonsigliolo">0</span>)
+                </button>
+                <button class="filter-team-btn px-3.5 py-2 rounded-lg font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition shrink-0" onclick="filterTeam('Montecchio', this)">
+                    Montecchio (<span id="countMontecchio">0</span>)
+                </button>
+            </div>
+        </div>
+
         <!-- Sezione Filtri Date e Ricerca -->
         <div class="bg-slate-800/80 border border-slate-700 rounded-xl p-3.5 sm:p-4 mb-5 space-y-3">
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
@@ -1216,7 +1240,18 @@
         let searchQuery = '';
 
         function updateCounters() {
-            document.getElementById('countAll').innerText = matches.length;
+            if (document.getElementById('countAll')) {
+                document.getElementById('countAll').innerText = matches.length;
+            }
+            const countByTeam = {};
+            matches.forEach(m => {
+                countByTeam[m.home] = (countByTeam[m.home] || 0) + 1;
+            });
+            if (document.getElementById('countCortona')) document.getElementById('countCortona').innerText = countByTeam['Cortona Camucia'] || 0;
+            if (document.getElementById('countFratta')) document.getElementById('countFratta').innerText = countByTeam['Fratta Santa Caterina'] || 0;
+            if (document.getElementById('countFratticciola')) document.getElementById('countFratticciola').innerText = countByTeam['Fratticciola'] || 0;
+            if (document.getElementById('countMonsigliolo')) document.getElementById('countMonsigliolo').innerText = countByTeam['Monsigliolo'] || 0;
+            if (document.getElementById('countMontecchio')) document.getElementById('countMontecchio').innerText = countByTeam['Montecchio'] || 0;
         }
 
         function renderMatches() {
