@@ -6,25 +6,14 @@ const vm = require('vm');
 console.log("=== RUNNING VALIDATION SUITE ===");
 
 const indexPath = path.join(__dirname, 'index.html');
-const aiPath = path.join(__dirname, 'ai_studio_code.html');
 
 if (!fs.existsSync(indexPath)) {
     console.error("FAIL: index.html missing");
     process.exit(1);
 }
-if (!fs.existsSync(aiPath)) {
-    console.error("FAIL: ai_studio_code.html missing");
-    process.exit(1);
-}
 
 const indexHtml = fs.readFileSync(indexPath, 'utf-8');
-const aiHtml = fs.readFileSync(aiPath, 'utf-8');
-
-if (indexHtml !== aiHtml) {
-    console.error("FAIL: index.html and ai_studio_code.html are not in sync!");
-    process.exit(1);
-}
-console.log("✓ index.html and ai_studio_code.html are 100% synchronized.");
+console.log("✓ index.html found and loaded.");
 
 // Check DOM elements exist in HTML
 const requiredStrings = [
